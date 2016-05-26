@@ -7,66 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A06C19981CF305AF007D8C4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C19971CF305AF007D8C4C /* AppDelegate.swift */; };
-		A06C199A1CF305AF007D8C4C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A06C19991CF305AF007D8C4C /* art.scnassets */; };
-		A06C199C1CF305AF007D8C4C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C199B1CF305AF007D8C4C /* GameViewController.swift */; };
-		A06C199F1CF305AF007D8C4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06C199D1CF305AF007D8C4C /* Main.storyboard */; };
-		A06C19A11CF305AF007D8C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A06C19A01CF305AF007D8C4C /* Assets.xcassets */; };
-		A06C19A41CF305AF007D8C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06C19A21CF305AF007D8C4C /* LaunchScreen.storyboard */; };
-		A06C19AF1CF305AF007D8C4C /* iRubiksCube3DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C19AE1CF305AF007D8C4C /* iRubiksCube3DTests.swift */; };
-		A06C19BA1CF305AF007D8C4C /* iRubiksCube3DUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C19B91CF305AF007D8C4C /* iRubiksCube3DUITests.swift */; };
+		A0F2449B1CF6DA03001B4438 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2449A1CF6DA03001B4438 /* AppDelegate.swift */; };
+		A0F2449D1CF6DA03001B4438 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2449C1CF6DA03001B4438 /* ViewController.swift */; };
+		A0F244A01CF6DA03001B4438 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0F2449E1CF6DA03001B4438 /* Main.storyboard */; };
+		A0F244A21CF6DA03001B4438 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0F244A11CF6DA03001B4438 /* Assets.xcassets */; };
+		A0F244B01CF6DA03001B4438 /* iRubiksCube3DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F244AF1CF6DA03001B4438 /* iRubiksCube3DTests.swift */; };
+		A0F244BB1CF6DA03001B4438 /* iRubiksCube3DUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F244BA1CF6DA03001B4438 /* iRubiksCube3DUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A06C19AB1CF305AF007D8C4C /* PBXContainerItemProxy */ = {
+		A0F244AC1CF6DA03001B4438 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A06C198C1CF305AF007D8C4C /* Project object */;
+			containerPortal = A0F2448F1CF6DA03001B4438 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A06C19931CF305AF007D8C4C;
+			remoteGlobalIDString = A0F244961CF6DA03001B4438;
 			remoteInfo = iRubiksCube3D;
 		};
-		A06C19B61CF305AF007D8C4C /* PBXContainerItemProxy */ = {
+		A0F244B71CF6DA03001B4438 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A06C198C1CF305AF007D8C4C /* Project object */;
+			containerPortal = A0F2448F1CF6DA03001B4438 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A06C19931CF305AF007D8C4C;
+			remoteGlobalIDString = A0F244961CF6DA03001B4438;
 			remoteInfo = iRubiksCube3D;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A06C19941CF305AF007D8C4C /* iRubiksCube3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRubiksCube3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A06C19971CF305AF007D8C4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A06C19991CF305AF007D8C4C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		A06C199B1CF305AF007D8C4C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		A06C199E1CF305AF007D8C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A06C19A01CF305AF007D8C4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A06C19A31CF305AF007D8C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A06C19A51CF305AF007D8C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A06C19AA1CF305AF007D8C4C /* iRubiksCube3DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iRubiksCube3DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A06C19AE1CF305AF007D8C4C /* iRubiksCube3DTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRubiksCube3DTests.swift; sourceTree = "<group>"; };
-		A06C19B01CF305AF007D8C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A06C19B51CF305AF007D8C4C /* iRubiksCube3DUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iRubiksCube3DUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A06C19B91CF305AF007D8C4C /* iRubiksCube3DUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRubiksCube3DUITests.swift; sourceTree = "<group>"; };
-		A06C19BB1CF305AF007D8C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0F244971CF6DA03001B4438 /* iRubiksCube3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iRubiksCube3D.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0F2449A1CF6DA03001B4438 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A0F2449C1CF6DA03001B4438 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A0F2449F1CF6DA03001B4438 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A0F244A11CF6DA03001B4438 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A0F244A61CF6DA03001B4438 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0F244AB1CF6DA03001B4438 /* iRubiksCube3DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iRubiksCube3DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0F244AF1CF6DA03001B4438 /* iRubiksCube3DTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRubiksCube3DTests.swift; sourceTree = "<group>"; };
+		A0F244B11CF6DA03001B4438 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0F244B61CF6DA03001B4438 /* iRubiksCube3DUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iRubiksCube3DUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0F244BA1CF6DA03001B4438 /* iRubiksCube3DUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iRubiksCube3DUITests.swift; sourceTree = "<group>"; };
+		A0F244BC1CF6DA03001B4438 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A06C19911CF305AF007D8C4C /* Frameworks */ = {
+		A0F244941CF6DA03001B4438 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A06C19A71CF305AF007D8C4C /* Frameworks */ = {
+		A0F244A81CF6DA03001B4438 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A06C19B21CF305AF007D8C4C /* Frameworks */ = {
+		A0F244B31CF6DA03001B4438 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,54 +72,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A06C198B1CF305AF007D8C4C = {
+		A0F2448E1CF6DA03001B4438 = {
 			isa = PBXGroup;
 			children = (
-				A06C19961CF305AF007D8C4C /* iRubiksCube3D */,
-				A06C19AD1CF305AF007D8C4C /* iRubiksCube3DTests */,
-				A06C19B81CF305AF007D8C4C /* iRubiksCube3DUITests */,
-				A06C19951CF305AF007D8C4C /* Products */,
+				A0F244991CF6DA03001B4438 /* iRubiksCube3D */,
+				A0F244AE1CF6DA03001B4438 /* iRubiksCube3DTests */,
+				A0F244B91CF6DA03001B4438 /* iRubiksCube3DUITests */,
+				A0F244981CF6DA03001B4438 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A06C19951CF305AF007D8C4C /* Products */ = {
+		A0F244981CF6DA03001B4438 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A06C19941CF305AF007D8C4C /* iRubiksCube3D.app */,
-				A06C19AA1CF305AF007D8C4C /* iRubiksCube3DTests.xctest */,
-				A06C19B51CF305AF007D8C4C /* iRubiksCube3DUITests.xctest */,
+				A0F244971CF6DA03001B4438 /* iRubiksCube3D.app */,
+				A0F244AB1CF6DA03001B4438 /* iRubiksCube3DTests.xctest */,
+				A0F244B61CF6DA03001B4438 /* iRubiksCube3DUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A06C19961CF305AF007D8C4C /* iRubiksCube3D */ = {
+		A0F244991CF6DA03001B4438 /* iRubiksCube3D */ = {
 			isa = PBXGroup;
 			children = (
-				A06C19971CF305AF007D8C4C /* AppDelegate.swift */,
-				A06C19991CF305AF007D8C4C /* art.scnassets */,
-				A06C199B1CF305AF007D8C4C /* GameViewController.swift */,
-				A06C199D1CF305AF007D8C4C /* Main.storyboard */,
-				A06C19A01CF305AF007D8C4C /* Assets.xcassets */,
-				A06C19A21CF305AF007D8C4C /* LaunchScreen.storyboard */,
-				A06C19A51CF305AF007D8C4C /* Info.plist */,
+				A0F2449A1CF6DA03001B4438 /* AppDelegate.swift */,
+				A0F2449C1CF6DA03001B4438 /* ViewController.swift */,
+				A0F2449E1CF6DA03001B4438 /* Main.storyboard */,
+				A0F244A11CF6DA03001B4438 /* Assets.xcassets */,
+				A0F244A61CF6DA03001B4438 /* Info.plist */,
 			);
 			path = iRubiksCube3D;
 			sourceTree = "<group>";
 		};
-		A06C19AD1CF305AF007D8C4C /* iRubiksCube3DTests */ = {
+		A0F244AE1CF6DA03001B4438 /* iRubiksCube3DTests */ = {
 			isa = PBXGroup;
 			children = (
-				A06C19AE1CF305AF007D8C4C /* iRubiksCube3DTests.swift */,
-				A06C19B01CF305AF007D8C4C /* Info.plist */,
+				A0F244AF1CF6DA03001B4438 /* iRubiksCube3DTests.swift */,
+				A0F244B11CF6DA03001B4438 /* Info.plist */,
 			);
 			path = iRubiksCube3DTests;
 			sourceTree = "<group>";
 		};
-		A06C19B81CF305AF007D8C4C /* iRubiksCube3DUITests */ = {
+		A0F244B91CF6DA03001B4438 /* iRubiksCube3DUITests */ = {
 			isa = PBXGroup;
 			children = (
-				A06C19B91CF305AF007D8C4C /* iRubiksCube3DUITests.swift */,
-				A06C19BB1CF305AF007D8C4C /* Info.plist */,
+				A0F244BA1CF6DA03001B4438 /* iRubiksCube3DUITests.swift */,
+				A0F244BC1CF6DA03001B4438 /* Info.plist */,
 			);
 			path = iRubiksCube3DUITests;
 			sourceTree = "<group>";
@@ -131,13 +125,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A06C19931CF305AF007D8C4C /* iRubiksCube3D */ = {
+		A0F244961CF6DA03001B4438 /* iRubiksCube3D */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A06C19BE1CF305AF007D8C4C /* Build configuration list for PBXNativeTarget "iRubiksCube3D" */;
+			buildConfigurationList = A0F244BF1CF6DA03001B4438 /* Build configuration list for PBXNativeTarget "iRubiksCube3D" */;
 			buildPhases = (
-				A06C19901CF305AF007D8C4C /* Sources */,
-				A06C19911CF305AF007D8C4C /* Frameworks */,
-				A06C19921CF305AF007D8C4C /* Resources */,
+				A0F244931CF6DA03001B4438 /* Sources */,
+				A0F244941CF6DA03001B4438 /* Frameworks */,
+				A0F244951CF6DA03001B4438 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -145,69 +139,69 @@
 			);
 			name = iRubiksCube3D;
 			productName = iRubiksCube3D;
-			productReference = A06C19941CF305AF007D8C4C /* iRubiksCube3D.app */;
+			productReference = A0F244971CF6DA03001B4438 /* iRubiksCube3D.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A06C19A91CF305AF007D8C4C /* iRubiksCube3DTests */ = {
+		A0F244AA1CF6DA03001B4438 /* iRubiksCube3DTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A06C19C11CF305AF007D8C4C /* Build configuration list for PBXNativeTarget "iRubiksCube3DTests" */;
+			buildConfigurationList = A0F244C21CF6DA03001B4438 /* Build configuration list for PBXNativeTarget "iRubiksCube3DTests" */;
 			buildPhases = (
-				A06C19A61CF305AF007D8C4C /* Sources */,
-				A06C19A71CF305AF007D8C4C /* Frameworks */,
-				A06C19A81CF305AF007D8C4C /* Resources */,
+				A0F244A71CF6DA03001B4438 /* Sources */,
+				A0F244A81CF6DA03001B4438 /* Frameworks */,
+				A0F244A91CF6DA03001B4438 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A06C19AC1CF305AF007D8C4C /* PBXTargetDependency */,
+				A0F244AD1CF6DA03001B4438 /* PBXTargetDependency */,
 			);
 			name = iRubiksCube3DTests;
 			productName = iRubiksCube3DTests;
-			productReference = A06C19AA1CF305AF007D8C4C /* iRubiksCube3DTests.xctest */;
+			productReference = A0F244AB1CF6DA03001B4438 /* iRubiksCube3DTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A06C19B41CF305AF007D8C4C /* iRubiksCube3DUITests */ = {
+		A0F244B51CF6DA03001B4438 /* iRubiksCube3DUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A06C19C41CF305AF007D8C4C /* Build configuration list for PBXNativeTarget "iRubiksCube3DUITests" */;
+			buildConfigurationList = A0F244C51CF6DA03001B4438 /* Build configuration list for PBXNativeTarget "iRubiksCube3DUITests" */;
 			buildPhases = (
-				A06C19B11CF305AF007D8C4C /* Sources */,
-				A06C19B21CF305AF007D8C4C /* Frameworks */,
-				A06C19B31CF305AF007D8C4C /* Resources */,
+				A0F244B21CF6DA03001B4438 /* Sources */,
+				A0F244B31CF6DA03001B4438 /* Frameworks */,
+				A0F244B41CF6DA03001B4438 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A06C19B71CF305AF007D8C4C /* PBXTargetDependency */,
+				A0F244B81CF6DA03001B4438 /* PBXTargetDependency */,
 			);
 			name = iRubiksCube3DUITests;
 			productName = iRubiksCube3DUITests;
-			productReference = A06C19B51CF305AF007D8C4C /* iRubiksCube3DUITests.xctest */;
+			productReference = A0F244B61CF6DA03001B4438 /* iRubiksCube3DUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A06C198C1CF305AF007D8C4C /* Project object */ = {
+		A0F2448F1CF6DA03001B4438 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = perrirazje;
 				TargetAttributes = {
-					A06C19931CF305AF007D8C4C = {
+					A0F244961CF6DA03001B4438 = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
-					A06C19A91CF305AF007D8C4C = {
+					A0F244AA1CF6DA03001B4438 = {
 						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = A06C19931CF305AF007D8C4C;
+						TestTargetID = A0F244961CF6DA03001B4438;
 					};
-					A06C19B41CF305AF007D8C4C = {
+					A0F244B51CF6DA03001B4438 = {
 						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = A06C19931CF305AF007D8C4C;
+						TestTargetID = A0F244961CF6DA03001B4438;
 					};
 				};
 			};
-			buildConfigurationList = A06C198F1CF305AF007D8C4C /* Build configuration list for PBXProject "iRubiksCube3D" */;
+			buildConfigurationList = A0F244921CF6DA03001B4438 /* Build configuration list for PBXProject "iRubiksCube3D" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -215,38 +209,36 @@
 				en,
 				Base,
 			);
-			mainGroup = A06C198B1CF305AF007D8C4C;
-			productRefGroup = A06C19951CF305AF007D8C4C /* Products */;
+			mainGroup = A0F2448E1CF6DA03001B4438;
+			productRefGroup = A0F244981CF6DA03001B4438 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A06C19931CF305AF007D8C4C /* iRubiksCube3D */,
-				A06C19A91CF305AF007D8C4C /* iRubiksCube3DTests */,
-				A06C19B41CF305AF007D8C4C /* iRubiksCube3DUITests */,
+				A0F244961CF6DA03001B4438 /* iRubiksCube3D */,
+				A0F244AA1CF6DA03001B4438 /* iRubiksCube3DTests */,
+				A0F244B51CF6DA03001B4438 /* iRubiksCube3DUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A06C19921CF305AF007D8C4C /* Resources */ = {
+		A0F244951CF6DA03001B4438 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A06C199A1CF305AF007D8C4C /* art.scnassets in Resources */,
-				A06C19A41CF305AF007D8C4C /* LaunchScreen.storyboard in Resources */,
-				A06C19A11CF305AF007D8C4C /* Assets.xcassets in Resources */,
-				A06C199F1CF305AF007D8C4C /* Main.storyboard in Resources */,
+				A0F244A21CF6DA03001B4438 /* Assets.xcassets in Resources */,
+				A0F244A01CF6DA03001B4438 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A06C19A81CF305AF007D8C4C /* Resources */ = {
+		A0F244A91CF6DA03001B4438 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A06C19B31CF305AF007D8C4C /* Resources */ = {
+		A0F244B41CF6DA03001B4438 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,67 +248,59 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A06C19901CF305AF007D8C4C /* Sources */ = {
+		A0F244931CF6DA03001B4438 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A06C199C1CF305AF007D8C4C /* GameViewController.swift in Sources */,
-				A06C19981CF305AF007D8C4C /* AppDelegate.swift in Sources */,
+				A0F2449D1CF6DA03001B4438 /* ViewController.swift in Sources */,
+				A0F2449B1CF6DA03001B4438 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A06C19A61CF305AF007D8C4C /* Sources */ = {
+		A0F244A71CF6DA03001B4438 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A06C19AF1CF305AF007D8C4C /* iRubiksCube3DTests.swift in Sources */,
+				A0F244B01CF6DA03001B4438 /* iRubiksCube3DTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A06C19B11CF305AF007D8C4C /* Sources */ = {
+		A0F244B21CF6DA03001B4438 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A06C19BA1CF305AF007D8C4C /* iRubiksCube3DUITests.swift in Sources */,
+				A0F244BB1CF6DA03001B4438 /* iRubiksCube3DUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A06C19AC1CF305AF007D8C4C /* PBXTargetDependency */ = {
+		A0F244AD1CF6DA03001B4438 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A06C19931CF305AF007D8C4C /* iRubiksCube3D */;
-			targetProxy = A06C19AB1CF305AF007D8C4C /* PBXContainerItemProxy */;
+			target = A0F244961CF6DA03001B4438 /* iRubiksCube3D */;
+			targetProxy = A0F244AC1CF6DA03001B4438 /* PBXContainerItemProxy */;
 		};
-		A06C19B71CF305AF007D8C4C /* PBXTargetDependency */ = {
+		A0F244B81CF6DA03001B4438 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A06C19931CF305AF007D8C4C /* iRubiksCube3D */;
-			targetProxy = A06C19B61CF305AF007D8C4C /* PBXContainerItemProxy */;
+			target = A0F244961CF6DA03001B4438 /* iRubiksCube3D */;
+			targetProxy = A0F244B71CF6DA03001B4438 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A06C199D1CF305AF007D8C4C /* Main.storyboard */ = {
+		A0F2449E1CF6DA03001B4438 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A06C199E1CF305AF007D8C4C /* Base */,
+				A0F2449F1CF6DA03001B4438 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A06C19A21CF305AF007D8C4C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A06C19A31CF305AF007D8C4C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A06C19BC1CF305AF007D8C4C /* Debug */ = {
+		A0F244BD1CF6DA03001B4438 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -335,7 +319,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -361,7 +345,7 @@
 			};
 			name = Debug;
 		};
-		A06C19BD1CF305AF007D8C4C /* Release */ = {
+		A0F244BE1CF6DA03001B4438 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -399,7 +383,7 @@
 			};
 			name = Release;
 		};
-		A06C19BF1CF305AF007D8C4C /* Debug */ = {
+		A0F244C01CF6DA03001B4438 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -410,7 +394,7 @@
 			};
 			name = Debug;
 		};
-		A06C19C01CF305AF007D8C4C /* Release */ = {
+		A0F244C11CF6DA03001B4438 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -421,11 +405,10 @@
 			};
 			name = Release;
 		};
-		A06C19C21CF305AF007D8C4C /* Debug */ = {
+		A0F244C31CF6DA03001B4438 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = iRubiksCube3DTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ETML.iRubiksCube3DTests;
@@ -434,7 +417,7 @@
 			};
 			name = Debug;
 		};
-		A06C19C31CF305AF007D8C4C /* Release */ = {
+		A0F244C41CF6DA03001B4438 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -446,10 +429,9 @@
 			};
 			name = Release;
 		};
-		A06C19C51CF305AF007D8C4C /* Debug */ = {
+		A0F244C61CF6DA03001B4438 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = iRubiksCube3DUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ETML.iRubiksCube3DUITests;
@@ -459,7 +441,7 @@
 			};
 			name = Debug;
 		};
-		A06C19C61CF305AF007D8C4C /* Release */ = {
+		A0F244C71CF6DA03001B4438 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = iRubiksCube3DUITests/Info.plist;
@@ -474,40 +456,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A06C198F1CF305AF007D8C4C /* Build configuration list for PBXProject "iRubiksCube3D" */ = {
+		A0F244921CF6DA03001B4438 /* Build configuration list for PBXProject "iRubiksCube3D" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A06C19BC1CF305AF007D8C4C /* Debug */,
-				A06C19BD1CF305AF007D8C4C /* Release */,
+				A0F244BD1CF6DA03001B4438 /* Debug */,
+				A0F244BE1CF6DA03001B4438 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A06C19BE1CF305AF007D8C4C /* Build configuration list for PBXNativeTarget "iRubiksCube3D" */ = {
+		A0F244BF1CF6DA03001B4438 /* Build configuration list for PBXNativeTarget "iRubiksCube3D" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A06C19BF1CF305AF007D8C4C /* Debug */,
-				A06C19C01CF305AF007D8C4C /* Release */,
+				A0F244C01CF6DA03001B4438 /* Debug */,
+				A0F244C11CF6DA03001B4438 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		A06C19C11CF305AF007D8C4C /* Build configuration list for PBXNativeTarget "iRubiksCube3DTests" */ = {
+		A0F244C21CF6DA03001B4438 /* Build configuration list for PBXNativeTarget "iRubiksCube3DTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A06C19C21CF305AF007D8C4C /* Debug */,
-				A06C19C31CF305AF007D8C4C /* Release */,
+				A0F244C31CF6DA03001B4438 /* Debug */,
+				A0F244C41CF6DA03001B4438 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		A06C19C41CF305AF007D8C4C /* Build configuration list for PBXNativeTarget "iRubiksCube3DUITests" */ = {
+		A0F244C51CF6DA03001B4438 /* Build configuration list for PBXNativeTarget "iRubiksCube3DUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A06C19C51CF305AF007D8C4C /* Debug */,
-				A06C19C61CF305AF007D8C4C /* Release */,
+				A0F244C61CF6DA03001B4438 /* Debug */,
+				A0F244C71CF6DA03001B4438 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A06C198C1CF305AF007D8C4C /* Project object */;
+	rootObject = A0F2448F1CF6DA03001B4438 /* Project object */;
 }

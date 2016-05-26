@@ -2,7 +2,7 @@
 //  iRubiksCube3DUITests.swift
 //  iRubiksCube3DUITests
 //
-//  Created by Jérémy Perriraz on 23.05.16.
+//  Created by Jérémy Perriraz on 26.05.16.
 //  Copyright © 2016 perrirazje. All rights reserved.
 //
 

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A06C19931CF305AF007D8C4C"
+               BlueprintIdentifier = "A0F244961CF6DA03001B4438"
                BuildableName = "iRubiksCube3D.app"
                BlueprintName = "iRubiksCube3D"
                ReferencedContainer = "container:iRubiksCube3D.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A06C19A91CF305AF007D8C4C"
+               BlueprintIdentifier = "A0F244AA1CF6DA03001B4438"
                BuildableName = "iRubiksCube3DTests.xctest"
                BlueprintName = "iRubiksCube3DTests"
                ReferencedContainer = "container:iRubiksCube3D.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A06C19B41CF305AF007D8C4C"
+               BlueprintIdentifier = "A0F244B51CF6DA03001B4438"
                BuildableName = "iRubiksCube3DUITests.xctest"
                BlueprintName = "iRubiksCube3DUITests"
                ReferencedContainer = "container:iRubiksCube3D.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A06C19931CF305AF007D8C4C"
+            BlueprintIdentifier = "A0F244961CF6DA03001B4438"
             BuildableName = "iRubiksCube3D.app"
             BlueprintName = "iRubiksCube3D"
             ReferencedContainer = "container:iRubiksCube3D.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A06C19931CF305AF007D8C4C"
+            BlueprintIdentifier = "A0F244961CF6DA03001B4438"
             BuildableName = "iRubiksCube3D.app"
             BlueprintName = "iRubiksCube3D"
             ReferencedContainer = "container:iRubiksCube3D.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A06C19931CF305AF007D8C4C"
+            BlueprintIdentifier = "A0F244961CF6DA03001B4438"
             BuildableName = "iRubiksCube3D.app"
             BlueprintName = "iRubiksCube3D"
             ReferencedContainer = "container:iRubiksCube3D.xcodeproj">
