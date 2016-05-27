@@ -9,6 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iRubiksCube3D" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -45,7 +46,7 @@
                                     <constraint firstAttribute="height" constant="21" id="Mb2-KR-kna"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -68,14 +69,12 @@
                         <outlet property="scn_menu" destination="8bC-Xf-vdC" id="iLW-KA-QB9"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="445" y="460"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ZYk-FJ-wXo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wIY-4W-3dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="lw4-We-f6u" customClass="ViewController" customModule="iRubiksCube3D" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IQL-3c-PmR"/>
@@ -85,16 +84,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moa-Wk-6x6">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" loops="NO" playing="YES" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moa-Wk-6x6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="606"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                             </sceneKitView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                     </view>
                     <connections>
-                        <outlet property="scn_rubiksCube" destination="moa-Wk-6x6" id="QO5-9Q-hZM"/>
+                        <outlet property="scn_menuRubiks" destination="czj-Pa-nH8" id="BPH-qL-sWb"/>
+                        <outlet property="scn_rubiksCube" destination="moa-Wk-6x6" id="Nep-t1-cZK"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wIY-4W-3dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1082" y="465"/>
         </scene>
