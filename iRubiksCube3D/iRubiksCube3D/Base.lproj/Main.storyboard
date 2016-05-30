@@ -9,7 +9,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iRubiksCube3D" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -27,7 +26,6 @@
                                 <state key="normal" title="Jouer au jeu"/>
                                 <connections>
                                     <action selector="btn_gameTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="6uC-Rf-wzQ"/>
-                                    <segue destination="lw4-We-f6u" kind="show" identifier="test" id="u0T-WW-Dtt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLm-6b-d0J">
@@ -67,15 +65,17 @@
                         <outlet property="btn_exit" destination="xLm-6b-d0J" id="c1l-wJ-fZc"/>
                         <outlet property="btn_game" destination="hRV-02-nXY" id="wcs-5Z-hGT"/>
                         <outlet property="scn_menu" destination="8bC-Xf-vdC" id="iLW-KA-QB9"/>
+                        <segue destination="lw4-We-f6u" kind="show" identifier="ToSecond" id="OxE-xe-IoR"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="445" y="460"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller2-->
         <scene sceneID="ZYk-FJ-wXo">
             <objects>
-                <viewController id="lw4-We-f6u" customClass="ViewController" customModule="iRubiksCube3D" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lw4-We-f6u" customClass="ViewController2" customModule="iRubiksCube3D" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IQL-3c-PmR"/>
                         <viewControllerLayoutGuide type="bottom" id="cxN-zw-fHY"/>
@@ -84,18 +84,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" loops="NO" playing="YES" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moa-Wk-6x6">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="606"/>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" loops="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moa-Wk-6x6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="eC3-9I-2qd"/>
+                                    <constraint firstAttribute="height" constant="600" id="hNB-wm-RNx"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="600" id="iTA-fK-gff"/>
+                                    <constraint firstAttribute="width" constant="600" id="xyR-j7-Wwd"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="eC3-9I-2qd"/>
+                                        <exclude reference="iTA-fK-gff"/>
+                                        <exclude reference="xyR-j7-Wwd"/>
+                                    </mask>
+                                </variation>
                             </sceneKitView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="moa-Wk-6x6" firstAttribute="bottom" secondItem="cxN-zw-fHY" secondAttribute="top" id="2aM-uL-pWE"/>
+                            <constraint firstItem="moa-Wk-6x6" firstAttribute="leading" secondItem="czj-Pa-nH8" secondAttribute="leadingMargin" id="Kqv-5n-eUR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="moa-Wk-6x6" secondAttribute="trailing" id="ewd-6G-S39"/>
+                            <constraint firstItem="moa-Wk-6x6" firstAttribute="bottom" secondItem="cxN-zw-fHY" secondAttribute="top" id="x7I-Lf-4yc"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="x7I-Lf-4yc"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
-                        <outlet property="scn_menuRubiks" destination="czj-Pa-nH8" id="BPH-qL-sWb"/>
-                        <outlet property="scn_rubiksCube" destination="moa-Wk-6x6" id="Nep-t1-cZK"/>
+                        <outlet property="scn_rubiksCube" destination="moa-Wk-6x6" id="ZYx-6d-lDs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIY-4W-3dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
