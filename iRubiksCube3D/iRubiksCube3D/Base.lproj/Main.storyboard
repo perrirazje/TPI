@@ -85,19 +85,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" loops="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moa-Wk-6x6">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="175" y="175" width="250" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="1J8-yV-Rh7"/>
                                     <constraint firstAttribute="height" constant="600" id="eC3-9I-2qd"/>
-                                    <constraint firstAttribute="height" constant="600" id="hNB-wm-RNx"/>
+                                    <constraint firstAttribute="height" constant="300" id="hNB-wm-RNx"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="600" id="iTA-fK-gff"/>
+                                    <constraint firstAttribute="height" constant="250" id="k0U-n6-kjo"/>
+                                    <constraint firstAttribute="width" constant="300" id="mH6-Da-3rN"/>
                                     <constraint firstAttribute="width" constant="600" id="xyR-j7-Wwd"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="1J8-yV-Rh7"/>
                                         <exclude reference="eC3-9I-2qd"/>
+                                        <exclude reference="hNB-wm-RNx"/>
                                         <exclude reference="iTA-fK-gff"/>
+                                        <exclude reference="mH6-Da-3rN"/>
                                         <exclude reference="xyR-j7-Wwd"/>
                                     </mask>
                                 </variation>
@@ -108,12 +114,26 @@
                         <constraints>
                             <constraint firstItem="moa-Wk-6x6" firstAttribute="bottom" secondItem="cxN-zw-fHY" secondAttribute="top" id="2aM-uL-pWE"/>
                             <constraint firstItem="moa-Wk-6x6" firstAttribute="leading" secondItem="czj-Pa-nH8" secondAttribute="leadingMargin" id="Kqv-5n-eUR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="moa-Wk-6x6" secondAttribute="trailing" id="OPB-eZ-257"/>
+                            <constraint firstItem="cxN-zw-fHY" firstAttribute="top" secondItem="moa-Wk-6x6" secondAttribute="bottom" id="VdM-jb-0IF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="moa-Wk-6x6" secondAttribute="trailing" id="X8V-t8-JQ1"/>
+                            <constraint firstItem="moa-Wk-6x6" firstAttribute="leading" secondItem="czj-Pa-nH8" secondAttribute="leadingMargin" id="Y4J-ro-bYe"/>
+                            <constraint firstItem="moa-Wk-6x6" firstAttribute="top" secondItem="IQL-3c-PmR" secondAttribute="bottom" id="brC-QV-CT4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="moa-Wk-6x6" secondAttribute="trailing" id="ewd-6G-S39"/>
+                            <constraint firstItem="cxN-zw-fHY" firstAttribute="top" secondItem="moa-Wk-6x6" secondAttribute="bottom" constant="150" id="qTW-ud-XJs"/>
                             <constraint firstItem="moa-Wk-6x6" firstAttribute="bottom" secondItem="cxN-zw-fHY" secondAttribute="top" id="x7I-Lf-4yc"/>
+                            <constraint firstItem="moa-Wk-6x6" firstAttribute="leading" secondItem="czj-Pa-nH8" secondAttribute="leadingMargin" id="yca-nD-T01"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="2aM-uL-pWE"/>
+                                <exclude reference="Kqv-5n-eUR"/>
+                                <exclude reference="OPB-eZ-257"/>
+                                <exclude reference="Y4J-ro-bYe"/>
+                                <exclude reference="brC-QV-CT4"/>
+                                <exclude reference="ewd-6G-S39"/>
                                 <exclude reference="x7I-Lf-4yc"/>
+                                <exclude reference="VdM-jb-0IF"/>
                             </mask>
                         </variation>
                     </view>
