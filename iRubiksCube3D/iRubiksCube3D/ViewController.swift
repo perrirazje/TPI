@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     // Initialisation des boutons pour les utiliser plus loin
     @IBOutlet weak var btn_game: UIButton!
     @IBOutlet weak var btn_exit: UIButton!
-    @IBOutlet weak var scn_rubiksCube: SCNView!
     @IBOutlet var scn_menu: UIView!
     @IBOutlet var scn_menuRubiks: UIView!
 

@@ -1,48 +1,28 @@
-//
-//  ViewController.swift
-//  iRubiksCube3D
-//
-//  Created by Jérémy Perriraz on 26.05.16.
-//  Copyright © 2016 perrirazje. All rights reserved.
-//
+///
+/// ETML
+/// Auteur : Jérémy Perriraz
+/// Date : 19.05.2016
+/// Description : Fichier qui contrôle toute la vue du Rubik's Cube,
+///               c'est ici que tout ce qui concerne cette vue sera fait.
+///
 
 import UIKit
 import SceneKit
 
-class ViewController2: UIViewController {
+///
+/// Nom : ViewController2
+/// Description : C'est la classe où il y aura tout le code de cette vue
+///
+class ViewController2 : UIViewController {
     
-    @IBOutlet weak var scn_rubiksCube: SCNView!
-    
-    // MARK: Properties
-    
-    @IBOutlet weak var NameButton: UIButton!
-    @IBOutlet weak var CancelButtomn: UIButton!
-    
-    // UI
-    @IBOutlet weak var geometryLabel: UILabel!
-    @IBOutlet weak var sceneView: SCNView!
-    @IBOutlet weak var View1: SCNView!
-    
-    
-    @IBOutlet var View4: UIView!
-    
-    let cameraNode = SCNNode()
-    var counter = 0
-    let spin = CABasicAnimation(keyPath: "rotation")
-    var timer = NSTimer()
-    
-    let PyraNode1 = SCNNode()
-    var Booleen = false
-    let scene = SCNScene()
-    var array = ["DPositif", "GNegatif", "DNegatif", "GPositif", "MHaut", "MBas", "HNegatif", "HPositif", "MDroite", "MGauche", "BPositif", "BNegatif", "FPositif", "FNegatif"]
-    
-    // Geometry
-    var geometryNode: SCNNode = SCNNode()
-    
-    // Gestures
-    var currentAngle: Float = 0.0
-    
-    let btn_DNegatif   = UIButton(type: UIButtonType.System) as UIButton
+    @IBOutlet weak var scnRubiksCube: SCNView!
+
+    let CAMERA_NODE = SCNNode()
+    let SCENE = SCNScene()
+    let ARRAYS_MOVEMENTS = ["DPositif", "GNegatif", "DNegatif", "GPositif", "MHaut"   , "MBas"    , "HNegatif",
+                            "HPositif", "MDroite" , "MGauche" , "BPositif", "BNegatif", "FPositif", "FNegatif"]
+    let GEOMETRY_NODE : SCNNode = SCNNode()
+    let BTN_DNEGATIF   = UIButton(type: UIButtonType.System) as UIButton
     let btn_DPositif   = UIButton(type: UIButtonType.System) as UIButton
     let btn_GPositif   = UIButton(type: UIButtonType.System) as UIButton
     let btn_GNegatif   = UIButton(type: UIButtonType.System) as UIButton
@@ -57,6 +37,8 @@ class ViewController2: UIViewController {
     let btn_FPositif   = UIButton(type: UIButtonType.System) as UIButton
     let btn_FNegatif   = UIButton(type: UIButtonType.System) as UIButton
     
+    var currentAngle: Float = 0.0
+
     var tabColor: [String] = ["orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange",
                               "jaune", "jaune", "jaune", "bleu", "bleu", "bleu", "blanc", "blanc", "blanc",
                               "vert", "vert", "vert", "jaune", "jaune", "jaune", "bleu", "bleu", "bleu",
@@ -88,7 +70,7 @@ class ViewController2: UIViewController {
         super.viewDidAppear(animated)
         sceneSetup1()
         //geometryNode = allPyra1()
-        scn_rubiksCube.scene!.rootNode.addChildNode(geometryNode)
+        scnRubiksCube.scene!.rootNode.addChildNode(GEOMETRY_NODE)
         sceneSetup2()
         
         
@@ -105,70 +87,73 @@ class ViewController2: UIViewController {
                         materialWithColor(UIColor.whiteColor()),
                         materialWithColor(UIColor.yellowColor()),
                     ]
+
                     let node = SCNNode(geometry: box)
                     node.position = SCNVector3(x: Float(x), y: Float(y), z: Float(z))
-                    scene.rootNode.addChildNode(node)
+
+                    SCENE.rootNode.addChildNode(node)
                     cubelets += [node]
                 }
             }
         }
         rnd_RubiksCube()
         
-        runAfterDelay(1.0) {
+        runAfterDelay(1.1) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(2.0) {
+        runAfterDelay(2.2) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(3.0) {
+        runAfterDelay(3.3) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(4.0) {
+        runAfterDelay(4.4) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(5.0) {
+        runAfterDelay(5.5) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(6.0) {
+        runAfterDelay(6.6) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(7.0) {
+        runAfterDelay(7.7) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(8.0) {
+        runAfterDelay(8.8) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(9.0) {
+        runAfterDelay(9.9) {
             self.rnd_RubiksCube()
         }
         
-        runAfterDelay(10) {
-            self.rnd_RubiksCube()
-        }
+        scnRubiksCube.scene = SCENE
+        scnRubiksCube.allowsCameraControl = true
         
         
-        scn_rubiksCube.scene = scene
-        scn_rubiksCube.allowsCameraControl = true
+        BTN_DNEGATIF.frame = CGRectMake(225, 420, 25, 25)
+        BTN_DNEGATIF.backgroundColor = UIColor.clearColor()
+        BTN_DNEGATIF.layer.borderWidth = 1.0
+        BTN_DNEGATIF.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_DNEGATIF.layer.cornerRadius = 5.0
+        BTN_DNEGATIF.setTitle("D-", forState: UIControlState.Normal)
+        BTN_DNEGATIF.addTarget(self, action: "btn_DNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        
-        btn_DNegatif.frame = CGRectMake(225, 420, 25, 25)
-        btn_DNegatif.backgroundColor = UIColor.blackColor()
-        btn_DNegatif.setTitle("D-", forState: UIControlState.Normal)
-        btn_DNegatif.addTarget(self, action: "btn_DNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_DNegatif)
+        self.view.addSubview(BTN_DNEGATIF)
         
 
         btn_DPositif.frame = CGRectMake(225, 140, 25, 25)
-        btn_DPositif.backgroundColor = UIColor.blackColor()
+        btn_DPositif.backgroundColor = UIColor.clearColor()
+        btn_DPositif.layer.borderWidth = 1.0
+        btn_DPositif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_DPositif.layer.cornerRadius = 5.0
         btn_DPositif.setTitle("D+", forState: UIControlState.Normal)
         btn_DPositif.addTarget(self, action: "btn_DPositif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -176,7 +161,10 @@ class ViewController2: UIViewController {
         
         
         btn_GPositif.frame = CGRectMake(60, 420, 25, 25)
-        btn_GPositif.backgroundColor = UIColor.blackColor()
+        btn_GPositif.backgroundColor = UIColor.clearColor()
+        btn_GPositif.layer.borderWidth = 1.0
+        btn_GPositif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_GPositif.layer.cornerRadius = 5.0
         btn_GPositif.setTitle("G+", forState: UIControlState.Normal)
         btn_GPositif.addTarget(self, action: "btn_GPositif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -184,7 +172,10 @@ class ViewController2: UIViewController {
         
         
         btn_GNegatif.frame = CGRectMake(60, 140, 25, 25)
-        btn_GNegatif.backgroundColor = UIColor.blackColor()
+        btn_GNegatif.backgroundColor = UIColor.clearColor()
+        btn_GNegatif.layer.borderWidth = 1.0
+        btn_GNegatif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_GNegatif.layer.cornerRadius = 5.0
         btn_GNegatif.setTitle("G-", forState: UIControlState.Normal)
         btn_GNegatif.addTarget(self, action: "btn_GNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -192,7 +183,10 @@ class ViewController2: UIViewController {
         
         
         btn_MHaut.frame = CGRectMake(140, 140, 25, 25)
-        btn_MHaut.backgroundColor = UIColor.blackColor()
+        btn_MHaut.backgroundColor = UIColor.clearColor()
+        btn_MHaut.layer.borderWidth = 1.0
+        btn_MHaut.layer.borderColor = UIColor.blackColor().CGColor
+        btn_MHaut.layer.cornerRadius = 5.0
         btn_MHaut.setTitle("MH", forState: UIControlState.Normal)
         btn_MHaut.addTarget(self, action: "btn_MHaut:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -200,7 +194,10 @@ class ViewController2: UIViewController {
         
         
         btn_MBas.frame = CGRectMake(140, 420, 25, 25)
-        btn_MBas.backgroundColor = UIColor.blackColor()
+        btn_MBas.backgroundColor = UIColor.clearColor()
+        btn_MBas.layer.borderWidth = 1.0
+        btn_MBas.layer.borderColor = UIColor.blackColor().CGColor
+        btn_MBas.layer.cornerRadius = 5.0
         btn_MBas.setTitle("MB", forState: UIControlState.Normal)
         btn_MBas.addTarget(self, action: "btn_MBas:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -208,7 +205,10 @@ class ViewController2: UIViewController {
         
         
         btn_HNegatif.frame = CGRectMake(285, 200, 25, 25)
-        btn_HNegatif.backgroundColor = UIColor.blackColor()
+        btn_HNegatif.backgroundColor = UIColor.clearColor()
+        btn_HNegatif.layer.borderWidth = 1.0
+        btn_HNegatif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_HNegatif.layer.cornerRadius = 5.0
         btn_HNegatif.setTitle("H-", forState: UIControlState.Normal)
         btn_HNegatif.addTarget(self, action: "btn_HNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -216,7 +216,10 @@ class ViewController2: UIViewController {
         
         
         btn_HPositif.frame = CGRectMake(10, 200, 25, 25)
-        btn_HPositif.backgroundColor = UIColor.blackColor()
+        btn_HPositif.backgroundColor = UIColor.clearColor()
+        btn_HPositif.layer.borderWidth = 1.0
+        btn_HPositif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_HPositif.layer.cornerRadius = 5.0
         btn_HPositif.setTitle("H+", forState: UIControlState.Normal)
         btn_HPositif.addTarget(self, action: "btn_HPositif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -224,7 +227,10 @@ class ViewController2: UIViewController {
         
         
         btn_BPositif.frame = CGRectMake(285, 360, 25, 25)
-        btn_BPositif.backgroundColor = UIColor.blackColor()
+        btn_BPositif.backgroundColor = UIColor.clearColor()
+        btn_BPositif.layer.borderWidth = 1.0
+        btn_BPositif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_BPositif.layer.cornerRadius = 5.0
         btn_BPositif.setTitle("B+", forState: UIControlState.Normal)
         btn_BPositif.addTarget(self, action: "btn_BPositif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -232,7 +238,10 @@ class ViewController2: UIViewController {
         
         
         btn_BNegatif.frame = CGRectMake(10, 360, 25, 25)
-        btn_BNegatif.backgroundColor = UIColor.blackColor()
+        btn_BNegatif.backgroundColor = UIColor.clearColor()
+        btn_BNegatif.layer.borderWidth = 1.0
+        btn_BNegatif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_BNegatif.layer.cornerRadius = 5.0
         btn_BNegatif.setTitle("B-", forState: UIControlState.Normal)
         btn_BNegatif.addTarget(self, action: "btn_BNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -240,7 +249,10 @@ class ViewController2: UIViewController {
         
         
         btn_MDroite.frame = CGRectMake(285, 280, 25, 25)
-        btn_MDroite.backgroundColor = UIColor.blackColor()
+        btn_MDroite.backgroundColor = UIColor.clearColor()
+        btn_MDroite.layer.borderWidth = 1.0
+        btn_MDroite.layer.borderColor = UIColor.blackColor().CGColor
+        btn_MDroite.layer.cornerRadius = 5.0
         btn_MDroite.setTitle("MD", forState: UIControlState.Normal)
         btn_MDroite.addTarget(self, action: "btn_MDroite:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -248,14 +260,20 @@ class ViewController2: UIViewController {
         
         
         btn_MGauche.frame = CGRectMake(10, 280, 25, 25)
-        btn_MGauche.backgroundColor = UIColor.blackColor()
+        btn_MGauche.backgroundColor = UIColor.clearColor()
+        btn_MGauche.layer.borderWidth = 1.0
+        btn_MGauche.layer.borderColor = UIColor.blackColor().CGColor
+        btn_MGauche.layer.cornerRadius = 5.0
         btn_MGauche.setTitle("MG", forState: UIControlState.Normal)
         btn_MGauche.addTarget(self, action: "btn_MGauche:", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(btn_MGauche)
         
         btn_FPositif.frame = CGRectMake(160, 280, 25, 25)
-        btn_FPositif.backgroundColor = UIColor.blackColor()
+        btn_FPositif.backgroundColor = UIColor.clearColor()
+        btn_FPositif.layer.borderWidth = 1.0
+        btn_FPositif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_FPositif.layer.cornerRadius = 5.0
         btn_FPositif.setTitle("F+", forState: UIControlState.Normal)
         btn_FPositif.addTarget(self, action: "btn_FPositif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -263,7 +281,10 @@ class ViewController2: UIViewController {
         
         
         btn_FNegatif.frame = CGRectMake(130, 280, 25, 25)
-        btn_FNegatif.backgroundColor = UIColor.blackColor()
+        btn_FNegatif.backgroundColor = UIColor.clearColor()
+        btn_FNegatif.layer.borderWidth = 1.0
+        btn_FNegatif.layer.borderColor = UIColor.blackColor().CGColor
+        btn_FNegatif.layer.cornerRadius = 5.0
         btn_FNegatif.setTitle("F-", forState: UIControlState.Normal)
         btn_FNegatif.addTarget(self, action: "btn_FNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -338,46 +359,46 @@ class ViewController2: UIViewController {
         
         print(Random)
 
-        if self.array[Random] == "DPositif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "DPositif" {
             self.DPositif()
         }
-        if self.array[Random] == "DNegatif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "DNegatif" {
             self.DNegatif()
         }
-        if self.array[Random] == "HNegatif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "HNegatif" {
             self.HNegatif()
         }
-        if self.array[Random] == "HPositif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "HPositif" {
             self.HPositif()
         }
-        if self.array[Random] == "MHaut" {
+        if self.ARRAYS_MOVEMENTS[Random] == "MHaut" {
             self.MHaut()
         }
-        if self.array[Random] == "MBas" {
+        if self.ARRAYS_MOVEMENTS[Random] == "MBas" {
             self.MBas()
         }
-        if self.array[Random] == "BNegatif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "BNegatif" {
             self.BNegatif()
         }
-        if self.array[Random] == "BPositif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "BPositif" {
             self.BPositif()
         }
-        if self.array[Random] == "MDroite" {
+        if self.ARRAYS_MOVEMENTS[Random] == "MDroite" {
             self.MDroite()
         }
-        if self.array[Random] == "MGauche" {
+        if self.ARRAYS_MOVEMENTS[Random] == "MGauche" {
             self.MGauche()
         }
-        if self.array[Random] == "FNegatif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "FNegatif" {
             self.FNegatif()
         }
-        if self.array[Random] == "FPositif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "FPositif" {
             self.FPositif()
         }
-        if self.array[Random] == "GPositif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "GPositif" {
             self.GPositif()
         }
-        if self.array[Random] == "GNegatif" {
+        if self.ARRAYS_MOVEMENTS[Random] == "GNegatif" {
             self.GNegatif()
         }
     }
@@ -388,7 +409,7 @@ class ViewController2: UIViewController {
     func DNegatif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -402,7 +423,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -422,9 +443,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -442,13 +463,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
 
     func DPositif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -462,7 +483,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -482,9 +503,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -502,13 +523,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func GPositif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -522,7 +543,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -542,9 +563,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -562,13 +583,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func GNegatif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -582,7 +603,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -602,9 +623,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -622,13 +643,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func MHaut() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -642,7 +663,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -662,9 +683,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -682,13 +703,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func MBas() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -702,7 +723,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -722,9 +743,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -742,13 +763,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func HNegatif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -762,7 +783,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -782,9 +803,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -802,13 +823,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func HPositif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -822,7 +843,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -842,9 +863,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -862,13 +883,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func BPositif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -882,7 +903,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -902,9 +923,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -922,13 +943,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func BNegatif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -942,7 +963,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -962,9 +983,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -982,13 +1003,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func MDroite() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -1002,7 +1023,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -1022,9 +1043,9 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -1042,13 +1063,13 @@ class ViewController2: UIViewController {
         }
         
         SCNTransaction.commit()
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
     }
     
     func MGauche() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -1062,7 +1083,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -1087,10 +1108,10 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
 
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -1109,14 +1130,14 @@ class ViewController2: UIViewController {
         
         SCNTransaction.commit()
 
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
 
         }
     
     func FPositif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -1130,7 +1151,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -1155,10 +1176,10 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
                 
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -1177,14 +1198,14 @@ class ViewController2: UIViewController {
         
         SCNTransaction.commit()
         
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
         
     }
     
     func FNegatif() {
         // create a temporary node for the rotation
         let rotateNode = SCNNode()
-        btn_DNegatif.hidden = true
+        BTN_DNEGATIF.hidden = true
         btn_HNegatif.hidden = true
         btn_BNegatif.hidden = true
         btn_GNegatif.hidden = true
@@ -1198,7 +1219,7 @@ class ViewController2: UIViewController {
         btn_MHaut.hidden = true
         btn_FPositif.hidden = true
         btn_FNegatif.hidden = true
-        scene.rootNode.addChildNode(rotateNode)
+        SCENE.rootNode.addChildNode(rotateNode)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
@@ -1223,10 +1244,10 @@ class ViewController2: UIViewController {
             rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.scene.rootNode.addChildNode(cubelet)
+                self.SCENE.rootNode.addChildNode(cubelet)
                 
             }
-            self.btn_DNegatif.hidden = false
+            self.BTN_DNEGATIF.hidden = false
             self.btn_HNegatif.hidden = false
             self.btn_BNegatif.hidden = false
             self.btn_GNegatif.hidden = false
@@ -1245,7 +1266,7 @@ class ViewController2: UIViewController {
         
         SCNTransaction.commit()
         
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = SCENE
         
     }
     
@@ -1285,23 +1306,23 @@ class ViewController2: UIViewController {
         let scene = SCNScene()
         
         
-        cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3Make(0, 0, 30)
-        cameraNode.rotation = SCNVector4Make(0, 0, 1, CFloat( -M_PI_4 ) * 2 )
-        cameraNode.eulerAngles.x = Float(-M_PI)
-        cameraNode.eulerAngles.y = Float(-2 * -M_PI)
-        scene.rootNode.addChildNode(cameraNode)
+        CAMERA_NODE.camera = SCNCamera()
+        CAMERA_NODE.position = SCNVector3Make(0, 0, 30)
+        CAMERA_NODE.rotation = SCNVector4Make(0, 0, 1, CFloat( -M_PI_4 ) * 2 )
+        CAMERA_NODE.eulerAngles.x = Float(-M_PI)
+        CAMERA_NODE.eulerAngles.y = Float(-2 * -M_PI)
+        scene.rootNode.addChildNode(CAMERA_NODE)
         //self.view.userInteractionEnabled = false
         
         
         
         let panRecognizer = UIPanGestureRecognizer(target: self, action: "panGesture:")
-        scn_rubiksCube.addGestureRecognizer(panRecognizer)
+        scnRubiksCube.addGestureRecognizer(panRecognizer)
         
         // 3
-        scn_rubiksCube.scene = scene
+        scnRubiksCube.scene = scene
         
-        scn_rubiksCube.allowsCameraControl = true
+        scnRubiksCube.allowsCameraControl = true
         
     }
     // MARK: Scene
@@ -1310,10 +1331,10 @@ class ViewController2: UIViewController {
         let scene = SCNScene()
         
         
-        cameraNode.camera = SCNCamera()
-        cameraNode.position = SCNVector3Make(0, 0, 30)
-        cameraNode.rotation = SCNVector4Make(0, 0, 1, CFloat( -M_PI_4 ) * 2 )
-        scene.rootNode.addChildNode(cameraNode)
+        CAMERA_NODE.camera = SCNCamera()
+        CAMERA_NODE.position = SCNVector3Make(0, 0, 30)
+        CAMERA_NODE.rotation = SCNVector4Make(0, 0, 1, CFloat( -M_PI_4 ) * 2 )
+        scene.rootNode.addChildNode(CAMERA_NODE)
         //self.view.userInteractionEnabled = false
         
         
@@ -1328,7 +1349,7 @@ class ViewController2: UIViewController {
         var newAngle = (Float)(translation.x)*(Float)(M_PI)/180.0
         newAngle += currentAngle
         
-        geometryNode.transform = SCNMatrix4MakeRotation(newAngle, 0, 1, 0)
+        GEOMETRY_NODE.transform = SCNMatrix4MakeRotation(newAngle, 0, 1, 0)
         
         if(sender.state == UIGestureRecognizerState.Ended) {
             currentAngle = newAngle
@@ -1338,7 +1359,7 @@ class ViewController2: UIViewController {
     // MARK: IBActions
     @IBAction func segmentValueChanged(sender: UISegmentedControl) {
         // 1
-        geometryNode.removeFromParentNode()
+        GEOMETRY_NODE.removeFromParentNode()
         currentAngle = 0.0
         
         //geometryNode = allPyra1()
@@ -1355,8 +1376,8 @@ class ViewController2: UIViewController {
     // MARK: Transition
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        scn_rubiksCube.stop(nil)
-        scn_rubiksCube.play(nil)
+        scnRubiksCube.stop(nil)
+        scnRubiksCube.play(nil)
     }
     /*
     func Cylinder() -> SCNGeometry {

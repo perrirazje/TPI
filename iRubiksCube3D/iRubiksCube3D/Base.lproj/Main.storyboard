@@ -138,7 +138,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="scn_rubiksCube" destination="moa-Wk-6x6" id="ZYx-6d-lDs"/>
+                        <outlet property="scnRubiksCube" destination="moa-Wk-6x6" id="hWy-s9-Gta"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIY-4W-3dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
