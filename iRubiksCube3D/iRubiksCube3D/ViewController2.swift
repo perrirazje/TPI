@@ -87,10 +87,13 @@ class ViewController2 : UIViewController {
                         materialWithColor(UIColor.whiteColor()),
                         materialWithColor(UIColor.yellowColor()),
                     ]
-
+                    
                     let node = SCNNode(geometry: box)
                     node.position = SCNVector3(x: Float(x), y: Float(y), z: Float(z))
-
+                    
+                    /////
+                    //////////node.geometry?.firstMaterial!.diffuse.contents = "/Users/perrirazje/Downloads/cube.png"
+                    /////
                     SCENE.rootNode.addChildNode(node)
                     cubelets += [node]
                 }
