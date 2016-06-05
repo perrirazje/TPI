@@ -1,7 +1,7 @@
 ///
 /// ETML
 /// Auteur : Jérémy Perriraz
-/// Date : 19.05.2016
+/// Date : 30.05.2016
 /// Description : Fichier qui contrôle toute la vue du Rubik's Cube,
 ///               c'est ici que tout ce qui concerne cette vue sera fait.
 ///
@@ -19,1337 +19,1452 @@ class ViewController2 : UIViewController {
 
     let CAMERA_NODE = SCNNode()
     let SCENE = SCNScene()
-    let ARRAYS_MOVEMENTS = ["DPositif", "GNegatif", "DNegatif", "GPositif", "MHaut"   , "MBas"    , "HNegatif",
-                            "HPositif", "MDroite" , "MGauche" , "BPositif", "BNegatif", "FPositif", "FNegatif"]
+    let ARRAYS_MOVEMENTS = ["RightPositive", "LeftNegative", "RightNegative", "LeftPositive", "MiddleUp", "MiddleDown",         "UpNegative", "UpPositive", "MiddleRight", "MiddleLeft", "DownPositive", "DownNegative", "FrontPositive", "FrontNegative"]
     let GEOMETRY_NODE : SCNNode = SCNNode()
-    let BTN_DNEGATIF   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_DPositif   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_GPositif   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_GNegatif   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_MHaut   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_MBas   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_HNegatif   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_HPositif   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_BPositif   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_BNegatif   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_MDroite   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_MGauche   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_FPositif   = UIButton(type: UIButtonType.System) as UIButton
-    let btn_FNegatif   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_RIGHT_NEGATIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_RIGHT_POSITIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_LEFT_POSITIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_LEFT_NEGATIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_MIDDLEUP   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_MIDDLE_DOWN   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_UP_NEGATIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_UP_POSITIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_DOWN_POSITIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_DOWN_NEGATIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_MIDDLE_RIGHT   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_MIDDLE_LEFT   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_FRONT_POSITIVE   = UIButton(type: UIButtonType.System) as UIButton
+    let BTN_FRONT_NEGATIVE   = UIButton(type: UIButtonType.System) as UIButton
     
     var currentAngle: Float = 0.0
-
-    var tabColor: [String] = ["orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange",
-                              "jaune", "jaune", "jaune", "bleu", "bleu", "bleu", "blanc", "blanc", "blanc",
-                              "vert", "vert", "vert", "jaune", "jaune", "jaune", "bleu", "bleu", "bleu",
-                              "blanc", "blanc", "blanc", "vert", "vert", "vert", "jaune", "jaune", "jaune",
-                              "bleu", "bleu", "bleu", "blanc", "blanc", "blanc", "vert", "vert", "vert",
-                              "rouge", "rouge", "rouge", "rouge", "rouge", "rouge", "rouge", "rouge", "rouge",]
+    var cubelets : [SCNNode] = []
     
-    /*
-    
-    orangeColor()
-    redColor()
-    greenColor()
-    whiteColor()
-    blueColor()
-    yellowColor()
-    
-    */
-    // create and arrange a 3x3x3 array of cubelets
-    var cubelets: [SCNNode] = []
-    
-
-    
-    // MARK: Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    ///
+    /// Nom : viewDidAppear
+    /// Description : C'est la fonction qui permet de faire apparaître et d'animer les objets graphiques.
+    /// Paramètre : animated : Bool
+    ///
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        sceneSetup1()
-        //geometryNode = allPyra1()
+        
+        addCamera()
         scnRubiksCube.scene!.rootNode.addChildNode(GEOMETRY_NODE)
-        sceneSetup2()
-        
-        
         
         for x in -1...1 {
             for y in -1...1 {
                 for z in -1...1 {
-                    let box = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.1)
-                    box.materials = [
-                        materialWithColor(UIColor.greenColor()),
-                        materialWithColor(UIColor.redColor()),
-                        materialWithColor(UIColor.blueColor()),
-                        materialWithColor(UIColor.orangeColor()),
-                        materialWithColor(UIColor.whiteColor()),
-                        materialWithColor(UIColor.yellowColor()),
-                    ]
+                    let SCN_BOX = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.1)
                     
-                    let node = SCNNode(geometry: box)
-                    node.position = SCNVector3(x: Float(x), y: Float(y), z: Float(z))
+                    SCN_BOX.materials = [
+                        changeMaterialWithColor(UIColor.greenColor()),
+                        changeMaterialWithColor(UIColor.redColor()),
+                        changeMaterialWithColor(UIColor.blueColor()),
+                        changeMaterialWithColor(UIColor.orangeColor()),
+                        changeMaterialWithColor(UIColor.whiteColor()),
+                        changeMaterialWithColor(UIColor.yellowColor()),
+                    ]
+                
+                    let SCN_NODE = SCNNode(geometry: SCN_BOX)
+                    
+                    SCN_NODE.position = SCNVector3(x: Float(x), y: Float(y), z: Float(z))
                     
                     /////
                     //////////node.geometry?.firstMaterial!.diffuse.contents = "/Users/perrirazje/Downloads/cube.png"
                     /////
-                    SCENE.rootNode.addChildNode(node)
-                    cubelets += [node]
+                    
+                    SCENE.rootNode.addChildNode(SCN_NODE)
+                    
+                    cubelets += [SCN_NODE]
                 }
             }
         }
-        rnd_RubiksCube()
+        
+        runAfterDelay(0.0) {
+            self.mixRubiksCube()
+        }
         
         runAfterDelay(1.1) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         runAfterDelay(2.2) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         runAfterDelay(3.3) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         runAfterDelay(4.4) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         runAfterDelay(5.5) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         runAfterDelay(6.6) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         runAfterDelay(7.7) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         runAfterDelay(8.8) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         runAfterDelay(9.9) {
-            self.rnd_RubiksCube()
+            self.mixRubiksCube()
         }
         
         scnRubiksCube.scene = SCENE
-        scnRubiksCube.allowsCameraControl = true
         
+        scnRubiksCube.allowsCameraControl = false
         
-        BTN_DNEGATIF.frame = CGRectMake(225, 420, 25, 25)
-        BTN_DNEGATIF.backgroundColor = UIColor.clearColor()
-        BTN_DNEGATIF.layer.borderWidth = 1.0
-        BTN_DNEGATIF.layer.borderColor = UIColor.blackColor().CGColor
-        BTN_DNEGATIF.layer.cornerRadius = 5.0
-        BTN_DNEGATIF.setTitle("D-", forState: UIControlState.Normal)
-        BTN_DNEGATIF.addTarget(self, action: "btn_DNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(BTN_DNEGATIF)
-        
+        BTN_RIGHT_NEGATIVE.frame = CGRectMake(225, 420, 25, 25)
+        BTN_RIGHT_NEGATIVE.backgroundColor = UIColor.clearColor()
+        BTN_RIGHT_NEGATIVE.layer.borderWidth = 1.0
+        BTN_RIGHT_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_RIGHT_NEGATIVE.layer.cornerRadius = 5.0
+        BTN_RIGHT_NEGATIVE.setTitle("D-", forState: UIControlState.Normal)
+        BTN_RIGHT_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnRightNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_RIGHT_NEGATIVE)
 
-        btn_DPositif.frame = CGRectMake(225, 140, 25, 25)
-        btn_DPositif.backgroundColor = UIColor.clearColor()
-        btn_DPositif.layer.borderWidth = 1.0
-        btn_DPositif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_DPositif.layer.cornerRadius = 5.0
-        btn_DPositif.setTitle("D+", forState: UIControlState.Normal)
-        btn_DPositif.addTarget(self, action: "btn_DPositif:", forControlEvents: UIControlEvents.TouchUpInside)
+        BTN_RIGHT_POSITIVE.frame = CGRectMake(225, 140, 25, 25)
+        BTN_RIGHT_POSITIVE.backgroundColor = UIColor.clearColor()
+        BTN_RIGHT_POSITIVE.layer.borderWidth = 1.0
+        BTN_RIGHT_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_RIGHT_POSITIVE.layer.cornerRadius = 5.0
+        BTN_RIGHT_POSITIVE.setTitle("D+", forState: UIControlState.Normal)
+        BTN_RIGHT_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnRightPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_RIGHT_POSITIVE)
         
-        self.view.addSubview(btn_DPositif)
+        BTN_LEFT_POSITIVE.frame = CGRectMake(60, 420, 25, 25)
+        BTN_LEFT_POSITIVE.backgroundColor = UIColor.clearColor()
+        BTN_LEFT_POSITIVE.layer.borderWidth = 1.0
+        BTN_LEFT_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_LEFT_POSITIVE.layer.cornerRadius = 5.0
+        BTN_LEFT_POSITIVE.setTitle("G+", forState: UIControlState.Normal)
+        BTN_LEFT_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnLeftPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_LEFT_POSITIVE)
         
+        BTN_LEFT_NEGATIVE.frame = CGRectMake(60, 140, 25, 25)
+        BTN_LEFT_NEGATIVE.backgroundColor = UIColor.clearColor()
+        BTN_LEFT_NEGATIVE.layer.borderWidth = 1.0
+        BTN_LEFT_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_LEFT_NEGATIVE.layer.cornerRadius = 5.0
+        BTN_LEFT_NEGATIVE.setTitle("G-", forState: UIControlState.Normal)
+        BTN_LEFT_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnLeftNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_LEFT_NEGATIVE)
         
-        btn_GPositif.frame = CGRectMake(60, 420, 25, 25)
-        btn_GPositif.backgroundColor = UIColor.clearColor()
-        btn_GPositif.layer.borderWidth = 1.0
-        btn_GPositif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_GPositif.layer.cornerRadius = 5.0
-        btn_GPositif.setTitle("G+", forState: UIControlState.Normal)
-        btn_GPositif.addTarget(self, action: "btn_GPositif:", forControlEvents: UIControlEvents.TouchUpInside)
+        BTN_MIDDLEUP.frame = CGRectMake(140, 140, 25, 25)
+        BTN_MIDDLEUP.backgroundColor = UIColor.clearColor()
+        BTN_MIDDLEUP.layer.borderWidth = 1.0
+        BTN_MIDDLEUP.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_MIDDLEUP.layer.cornerRadius = 5.0
+        BTN_MIDDLEUP.setTitle("MH", forState: UIControlState.Normal)
+        BTN_MIDDLEUP.addTarget(self, action: #selector(ViewController2.activateBtnMiddleUp(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_MIDDLEUP)
         
-        self.view.addSubview(btn_GPositif)
+        BTN_MIDDLE_DOWN.frame = CGRectMake(140, 420, 25, 25)
+        BTN_MIDDLE_DOWN.backgroundColor = UIColor.clearColor()
+        BTN_MIDDLE_DOWN.layer.borderWidth = 1.0
+        BTN_MIDDLE_DOWN.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_MIDDLE_DOWN.layer.cornerRadius = 5.0
+        BTN_MIDDLE_DOWN.setTitle("MB", forState: UIControlState.Normal)
+        BTN_MIDDLE_DOWN.addTarget(self, action: #selector(ViewController2.activateBtnMiddleDown(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_MIDDLE_DOWN)
         
+        BTN_UP_NEGATIVE.frame = CGRectMake(285, 200, 25, 25)
+        BTN_UP_NEGATIVE.backgroundColor = UIColor.clearColor()
+        BTN_UP_NEGATIVE.layer.borderWidth = 1.0
+        BTN_UP_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_UP_NEGATIVE.layer.cornerRadius = 5.0
+        BTN_UP_NEGATIVE.setTitle("H-", forState: UIControlState.Normal)
+        BTN_UP_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnUpNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_UP_NEGATIVE)
         
-        btn_GNegatif.frame = CGRectMake(60, 140, 25, 25)
-        btn_GNegatif.backgroundColor = UIColor.clearColor()
-        btn_GNegatif.layer.borderWidth = 1.0
-        btn_GNegatif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_GNegatif.layer.cornerRadius = 5.0
-        btn_GNegatif.setTitle("G-", forState: UIControlState.Normal)
-        btn_GNegatif.addTarget(self, action: "btn_GNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
+        BTN_UP_POSITIVE.frame = CGRectMake(10, 200, 25, 25)
+        BTN_UP_POSITIVE.backgroundColor = UIColor.clearColor()
+        BTN_UP_POSITIVE.layer.borderWidth = 1.0
+        BTN_UP_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_UP_POSITIVE.layer.cornerRadius = 5.0
+        BTN_UP_POSITIVE.setTitle("H+", forState: UIControlState.Normal)
+        BTN_UP_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnUpPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_UP_POSITIVE)
         
-        self.view.addSubview(btn_GNegatif)
+        BTN_DOWN_POSITIVE.frame = CGRectMake(285, 360, 25, 25)
+        BTN_DOWN_POSITIVE.backgroundColor = UIColor.clearColor()
+        BTN_DOWN_POSITIVE.layer.borderWidth = 1.0
+        BTN_DOWN_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_DOWN_POSITIVE.layer.cornerRadius = 5.0
+        BTN_DOWN_POSITIVE.setTitle("B+", forState: UIControlState.Normal)
+        BTN_DOWN_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnDownPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_DOWN_POSITIVE)
         
+        BTN_DOWN_NEGATIVE.frame = CGRectMake(10, 360, 25, 25)
+        BTN_DOWN_NEGATIVE.backgroundColor = UIColor.clearColor()
+        BTN_DOWN_NEGATIVE.layer.borderWidth = 1.0
+        BTN_DOWN_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_DOWN_NEGATIVE.layer.cornerRadius = 5.0
+        BTN_DOWN_NEGATIVE.setTitle("B-", forState: UIControlState.Normal)
+        BTN_DOWN_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnDownNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_DOWN_NEGATIVE)
         
-        btn_MHaut.frame = CGRectMake(140, 140, 25, 25)
-        btn_MHaut.backgroundColor = UIColor.clearColor()
-        btn_MHaut.layer.borderWidth = 1.0
-        btn_MHaut.layer.borderColor = UIColor.blackColor().CGColor
-        btn_MHaut.layer.cornerRadius = 5.0
-        btn_MHaut.setTitle("MH", forState: UIControlState.Normal)
-        btn_MHaut.addTarget(self, action: "btn_MHaut:", forControlEvents: UIControlEvents.TouchUpInside)
+        BTN_MIDDLE_RIGHT.frame = CGRectMake(285, 280, 25, 25)
+        BTN_MIDDLE_RIGHT.backgroundColor = UIColor.clearColor()
+        BTN_MIDDLE_RIGHT.layer.borderWidth = 1.0
+        BTN_MIDDLE_RIGHT.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_MIDDLE_RIGHT.layer.cornerRadius = 5.0
+        BTN_MIDDLE_RIGHT.setTitle("MD", forState: UIControlState.Normal)
+        BTN_MIDDLE_RIGHT.addTarget(self, action: #selector(ViewController2.activateBtnMiddleRight(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_MIDDLE_RIGHT)
         
-        self.view.addSubview(btn_MHaut)
+        BTN_MIDDLE_LEFT.frame = CGRectMake(10, 280, 25, 25)
+        BTN_MIDDLE_LEFT.backgroundColor = UIColor.clearColor()
+        BTN_MIDDLE_LEFT.layer.borderWidth = 1.0
+        BTN_MIDDLE_LEFT.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_MIDDLE_LEFT.layer.cornerRadius = 5.0
+        BTN_MIDDLE_LEFT.setTitle("MG", forState: UIControlState.Normal)
+        BTN_MIDDLE_LEFT.addTarget(self, action: #selector(ViewController2.activateBtnMiddleLeft(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_MIDDLE_LEFT)
         
+        BTN_FRONT_POSITIVE.frame = CGRectMake(160, 280, 25, 25)
+        BTN_FRONT_POSITIVE.backgroundColor = UIColor.clearColor()
+        BTN_FRONT_POSITIVE.layer.borderWidth = 1.0
+        BTN_FRONT_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_FRONT_POSITIVE.layer.cornerRadius = 5.0
+        BTN_FRONT_POSITIVE.setTitle("F+", forState: UIControlState.Normal)
+        BTN_FRONT_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnFrontPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_FRONT_POSITIVE)
         
-        btn_MBas.frame = CGRectMake(140, 420, 25, 25)
-        btn_MBas.backgroundColor = UIColor.clearColor()
-        btn_MBas.layer.borderWidth = 1.0
-        btn_MBas.layer.borderColor = UIColor.blackColor().CGColor
-        btn_MBas.layer.cornerRadius = 5.0
-        btn_MBas.setTitle("MB", forState: UIControlState.Normal)
-        btn_MBas.addTarget(self, action: "btn_MBas:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_MBas)
-        
-        
-        btn_HNegatif.frame = CGRectMake(285, 200, 25, 25)
-        btn_HNegatif.backgroundColor = UIColor.clearColor()
-        btn_HNegatif.layer.borderWidth = 1.0
-        btn_HNegatif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_HNegatif.layer.cornerRadius = 5.0
-        btn_HNegatif.setTitle("H-", forState: UIControlState.Normal)
-        btn_HNegatif.addTarget(self, action: "btn_HNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_HNegatif)
-        
-        
-        btn_HPositif.frame = CGRectMake(10, 200, 25, 25)
-        btn_HPositif.backgroundColor = UIColor.clearColor()
-        btn_HPositif.layer.borderWidth = 1.0
-        btn_HPositif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_HPositif.layer.cornerRadius = 5.0
-        btn_HPositif.setTitle("H+", forState: UIControlState.Normal)
-        btn_HPositif.addTarget(self, action: "btn_HPositif:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_HPositif)
-        
-        
-        btn_BPositif.frame = CGRectMake(285, 360, 25, 25)
-        btn_BPositif.backgroundColor = UIColor.clearColor()
-        btn_BPositif.layer.borderWidth = 1.0
-        btn_BPositif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_BPositif.layer.cornerRadius = 5.0
-        btn_BPositif.setTitle("B+", forState: UIControlState.Normal)
-        btn_BPositif.addTarget(self, action: "btn_BPositif:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_BPositif)
-        
-        
-        btn_BNegatif.frame = CGRectMake(10, 360, 25, 25)
-        btn_BNegatif.backgroundColor = UIColor.clearColor()
-        btn_BNegatif.layer.borderWidth = 1.0
-        btn_BNegatif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_BNegatif.layer.cornerRadius = 5.0
-        btn_BNegatif.setTitle("B-", forState: UIControlState.Normal)
-        btn_BNegatif.addTarget(self, action: "btn_BNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_BNegatif)
-        
-        
-        btn_MDroite.frame = CGRectMake(285, 280, 25, 25)
-        btn_MDroite.backgroundColor = UIColor.clearColor()
-        btn_MDroite.layer.borderWidth = 1.0
-        btn_MDroite.layer.borderColor = UIColor.blackColor().CGColor
-        btn_MDroite.layer.cornerRadius = 5.0
-        btn_MDroite.setTitle("MD", forState: UIControlState.Normal)
-        btn_MDroite.addTarget(self, action: "btn_MDroite:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_MDroite)
-        
-        
-        btn_MGauche.frame = CGRectMake(10, 280, 25, 25)
-        btn_MGauche.backgroundColor = UIColor.clearColor()
-        btn_MGauche.layer.borderWidth = 1.0
-        btn_MGauche.layer.borderColor = UIColor.blackColor().CGColor
-        btn_MGauche.layer.cornerRadius = 5.0
-        btn_MGauche.setTitle("MG", forState: UIControlState.Normal)
-        btn_MGauche.addTarget(self, action: "btn_MGauche:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_MGauche)
-        
-        btn_FPositif.frame = CGRectMake(160, 280, 25, 25)
-        btn_FPositif.backgroundColor = UIColor.clearColor()
-        btn_FPositif.layer.borderWidth = 1.0
-        btn_FPositif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_FPositif.layer.cornerRadius = 5.0
-        btn_FPositif.setTitle("F+", forState: UIControlState.Normal)
-        btn_FPositif.addTarget(self, action: "btn_FPositif:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_FPositif)
-        
-        
-        btn_FNegatif.frame = CGRectMake(130, 280, 25, 25)
-        btn_FNegatif.backgroundColor = UIColor.clearColor()
-        btn_FNegatif.layer.borderWidth = 1.0
-        btn_FNegatif.layer.borderColor = UIColor.blackColor().CGColor
-        btn_FNegatif.layer.cornerRadius = 5.0
-        btn_FNegatif.setTitle("F-", forState: UIControlState.Normal)
-        btn_FNegatif.addTarget(self, action: "btn_FNegatif:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        self.view.addSubview(btn_FNegatif)
+        BTN_FRONT_NEGATIVE.frame = CGRectMake(130, 280, 25, 25)
+        BTN_FRONT_NEGATIVE.backgroundColor = UIColor.clearColor()
+        BTN_FRONT_NEGATIVE.layer.borderWidth = 1.0
+        BTN_FRONT_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
+        BTN_FRONT_NEGATIVE.layer.cornerRadius = 5.0
+        BTN_FRONT_NEGATIVE.setTitle("F-", forState: UIControlState.Normal)
+        BTN_FRONT_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnFrontNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_FRONT_NEGATIVE)
     }
     
-    func btn_DNegatif(sender:UIButton!)
+    ///
+    /// Nom : activateBtnRightNegative
+    /// Description : Cette fonction lance la fonction turnRightNegative lorsque l'on clique sur le bouton RightNegative.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnRightNegative(sender:UIButton!)
     {
-        DNegatif()
+        turnRightNegative()
     }
-    func btn_DPositif(sender:UIButton!)
+    
+    ///
+    /// Nom : activateBtnRightPositive
+    /// Description : Cette fonction lance la fonction turnRightPositive lorsque l'on clique sur le bouton RightPositive.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnRightPositive(sender:UIButton!)
     {
-        DPositif()
+        turnRightPositive()
     }
-    func btn_GPositif(sender:UIButton!)
+    
+    ///
+    /// Nom : activateBtnLeftPositive
+    /// Description : Cette fonction lance la fonction turnLeftPositive lorsque l'on clique sur le bouton LeftPositive.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnLeftPositive(sender:UIButton!)
     {
-        GPositif()
+        turnLeftPositive()
     }
-    func btn_GNegatif(sender:UIButton!)
+    
+    ///
+    /// Nom : activateBtnLeftNegative
+    /// Description : Cette fonction lance la fonction turnLeftNegative lorsque l'on clique sur le bouton LeftNegative.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnLeftNegative(sender:UIButton!)
     {
-        GNegatif()
+        turnLeftNegative()
     }
-    func btn_MHaut(sender:UIButton!)
+    
+    ///
+    /// Nom : activateBtnMiddleUp
+    /// Description : Cette fonction lance la fonction turnMiddleUp lorsque l'on clique sur le bouton MiddleUp.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnMiddleUp(sender:UIButton!)
     {
-        MHaut()
+        turnMiddleUp()
     }
-    func btn_MBas(sender:UIButton!)
+    
+    ///
+    /// Nom : activateBtnMiddleDown
+    /// Description : Cette fonction lance la fonction turnMiddleDown lorsque l'on clique sur le bouton MiddleDown.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnMiddleDown(sender:UIButton!)
     {
-        MBas()
+        turnMiddleDown()
     }
 
-    func btn_HNegatif(sender:UIButton!)
+    ///
+    /// Nom : activateBtnUpNegative
+    /// Description : Cette fonction lance la fonction turnUpNegative lorsque l'on clique sur le bouton UpNegative.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnUpNegative(sender:UIButton!)
     {
-        HNegatif()
-    }
-    func btn_HPositif(sender:UIButton!)
-    {
-        HPositif()
-    }
-    func btn_BPositif(sender:UIButton!)
-    {
-        BPositif()
-    }
-    func btn_BNegatif(sender:UIButton!)
-    {
-        BNegatif()
-    }
-    func btn_MDroite(sender:UIButton!)
-    {
-        MDroite()
-    }
-    func btn_MGauche(sender:UIButton!)
-    {
-        MGauche()
-    }
-    func btn_FPositif(sender:UIButton!)
-    {
-        FPositif()
-    }
-    func btn_FNegatif(sender:UIButton!)
-    {
-        FNegatif()
+        turnUpNegative()
     }
     
-    func runAfterDelay(delay: NSTimeInterval, block: dispatch_block_t) {
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-        dispatch_after(time, dispatch_get_main_queue(), block)
+    ///
+    /// Nom : activateBtnUpPositive
+    /// Description : Cette fonction lance la fonction turnUpPositive lorsque l'on clique sur le bouton UpPositive.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnUpPositive(sender:UIButton!)
+    {
+        turnUpPositive()
     }
     
-    func rnd_RubiksCube() {
-        var Random = Int(arc4random_uniform(13))
-        
-        print(Random)
+    ///
+    /// Nom : activateBtnDownPositive
+    /// Description : Cette fonction lance la fonction turnDownPositive lorsque l'on clique sur le bouton DownPositive.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnDownPositive(sender:UIButton!)
+    {
+        turnDownPositive()
+    }
+    
+    ///
+    /// Nom : activateBtnDownNegative
+    /// Description : Cette fonction lance la fonction turnDownNegative lorsque l'on clique sur le bouton DownDegative.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnDownNegative(sender:UIButton!)
+    {
+        turnDownNegative()
+    }
+    
+    ///
+    /// Nom : activateBtnMiddleRight
+    /// Description : Cette fonction lance la fonction turnMiddleRight lorsque l'on clique sur le bouton MiddleRight.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnMiddleRight(sender:UIButton!)
+    {
+        turnMiddleRight()
+    }
+    
+    ///
+    /// Nom : activateBtnMiddleLeft
+    /// Description : Cette fonction lance la fonction turnMiddleLeft lorsque l'on clique sur le bouton MiddleLeft.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnMiddleLeft(sender:UIButton!)
+    {
+        turnMiddleLeft()
+    }
+    
+    ///
+    /// Nom : activateBtnFrontPositive
+    /// Description : Cette fonction lance la fonction turnFrontPositive lorsque l'on clique sur le bouton FrontPositive.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnFrontPositive(sender:UIButton!)
+    {
+        turnFrontPositive()
+    }
+    
+    ///
+    /// Nom : activateBtnFrontNegative
+    /// Description : Cette fonction lance la fonction turnFrontNegative lorsque l'on clique sur le bouton FrontNegative.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnFrontNegative(sender:UIButton!)
+    {
+        turnFrontNegative()
+    }
+    
+    ///
+    /// Nom : runAfterDelay
+    /// Description : Cette fonction permet de mettre un temps précis avant que ce qu'il y a dedans se passe.
+    /// Paramètre : delay : NSTimeInterval, block : dispatch_block_t
+    ///
+    func runAfterDelay(delay : NSTimeInterval, block : dispatch_block_t) {
+        let TIME = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+        dispatch_after(TIME, dispatch_get_main_queue(), block)
+    }
+    
+    ///
+    /// Nom : mixRubiksCube
+    /// Description : Cette fonction permet de mélanger aléatoirement le Rubik's Cube
+    ///
+    func mixRubiksCube() {
+        let RANDOM_NUMBER = Int(arc4random_uniform(13))
 
-        if self.ARRAYS_MOVEMENTS[Random] == "DPositif" {
-            self.DPositif()
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "RightPositive" {
+            self.turnRightPositive()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "DNegatif" {
-            self.DNegatif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "RightNegative" {
+            self.turnRightNegative()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "HNegatif" {
-            self.HNegatif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "UpNegative" {
+            self.turnUpNegative()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "HPositif" {
-            self.HPositif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "UpPositive" {
+            self.turnUpPositive()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "MHaut" {
-            self.MHaut()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleUp" {
+            self.turnMiddleUp()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "MBas" {
-            self.MBas()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleDown" {
+            self.turnMiddleDown()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "BNegatif" {
-            self.BNegatif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "DownNegative" {
+            self.turnDownNegative()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "BPositif" {
-            self.BPositif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "DownPositive" {
+            self.turnDownPositive()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "MDroite" {
-            self.MDroite()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleRight" {
+            self.turnMiddleRight()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "MGauche" {
-            self.MGauche()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleLeft" {
+            self.turnMiddleLeft()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "FNegatif" {
-            self.FNegatif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "FrontNegative" {
+            self.turnFrontNegative()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "FPositif" {
-            self.FPositif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "FrontPositive" {
+            self.turnFrontPositive()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "GPositif" {
-            self.GPositif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "LeftPositive" {
+            self.turnLeftPositive()
         }
-        if self.ARRAYS_MOVEMENTS[Random] == "GNegatif" {
-            self.GNegatif()
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "LeftNegative" {
+            self.turnLeftNegative()
         }
     }
     
-    
-    
-    
-    func DNegatif() {
+    ///
+    /// Nom : turnRightNegative
+    /// Description : Cette fonction permet de tourner la ligne RightNegative et de cacher les boutons pendant l'animation.
+    ///
+    func turnRightNegative() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.x - 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.x += Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
 
-    func DPositif() {
+    ///
+    /// Nom : turnRightPositive
+    /// Description : Cette fonction permet de tourner la ligne RightPositive et de cacher les boutons pendant l'animation.
+    ///
+    func turnRightPositive() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.x - 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.x -= Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func GPositif() {
+    ///
+    /// Nom : turnLeftPositive
+    /// Description : Cette fonction permet de tourner la ligne LeftPositive et de cacher les boutons pendant l'animation.
+    ///
+    func turnLeftPositive() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.x + 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.x += Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func GNegatif() {
+    ///
+    /// Nom : turnLeftNegative
+    /// Description : Cette fonction permet de tourner la ligne LeftNegative et de cacher les boutons pendant l'animation.
+    ///
+    func turnLeftNegative() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.x + 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.x -= Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func MHaut() {
+    ///
+    /// Nom : turnMiddleUp
+    /// Description : Cette fonction permet de tourner la ligne MiddleUp et de cacher les boutons pendant l'animation.
+    ///
+    func turnMiddleUp() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.x) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.x -= Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func MBas() {
+    ///
+    /// Nom : turnMiddleDown
+    /// Description : Cette fonction permet de tourner la ligne MiddleDown et de cacher les boutons pendant l'animation.
+    ///
+    func turnMiddleDown() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.x) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.x += Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func HNegatif() {
+    ///
+    /// Nom : turnUpNegative
+    /// Description : Cette fonction permet de tourner la ligne UpNegative et de cacher les boutons pendant l'animation.
+    ///
+    func turnUpNegative() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.y - 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.y += Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func HPositif() {
+    ///
+    /// Nom : turnUpPositive
+    /// Description : Cette fonction permet de tourner la ligne UpPositive et de cacher les boutons pendant l'animation.
+    ///
+    func turnUpPositive() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.y - 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.y -= Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func BPositif() {
+    ///
+    /// Nom : turnDownPositive
+    /// Description : Cette fonction permet de tourner la ligne DownPositive et de cacher les boutons pendant l'animation.
+    ///
+    func turnDownPositive() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.y + 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.y += Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func BNegatif() {
+    ///
+    /// Nom : turnDownNegative
+    /// Description : Cette fonction permet de tourner la ligne DownNegative et de cacher les boutons pendant l'animation.
+    ///
+    func turnDownNegative() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.y + 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.y -= Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func MDroite() {
+    ///
+    /// Nom : turnMiddleRight
+    /// Description : Cette fonction permet de tourner la ligne MiddleRight et de cacher les boutons pendant l'animation.
+    ///
+    func turnMiddleRight() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.y) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0) }
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.y += Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
+        
         scnRubiksCube.scene = SCENE
     }
     
-    func MGauche() {
+    ///
+    /// Nom : turnMiddleLeft
+    /// Description : Cette fonction permet de tourner la ligne MiddleLeft et de cacher les boutons pendant l'animation.
+    ///
+    func turnMiddleLeft() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.y) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0)
-
-        }
-        
-
-        
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
+ 
         // animate a rotation
-        
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
 
-        rotateNode.eulerAngles.y -= Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
+                
                 self.SCENE.rootNode.addChildNode(cubelet)
 
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
 
         scnRubiksCube.scene = SCENE
-
         }
     
-    func FPositif() {
+    ///
+    /// Nom : turnFrontPositive
+    /// Description : Cette fonction permet de tourner la ligne FrontPositive et de cacher les boutons pendant l'animation.
+    ///
+    func turnFrontPositive() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.z - 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0)
-            
-        }
-        
-        
-        
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
+    
         // animate a rotation
-        
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.z -= Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.z -= Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.SCENE.rootNode.addChildNode(cubelet)
                 
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
         
         scnRubiksCube.scene = SCENE
-        
     }
     
-    func FNegatif() {
+    ///
+    /// Nom : turnFrontNegative
+    /// Description : Cette fonction permet de tourner la ligne FrontNegative et de cacher les boutons pendant l'animation.
+    ///
+    func turnFrontNegative() {
         // create a temporary node for the rotation
-        let rotateNode = SCNNode()
-        BTN_DNEGATIF.hidden = true
-        btn_HNegatif.hidden = true
-        btn_BNegatif.hidden = true
-        btn_GNegatif.hidden = true
-        btn_DPositif.hidden = true
-        btn_HPositif.hidden = true
-        btn_BPositif.hidden = true
-        btn_GPositif.hidden = true
-        btn_MBas.hidden = true
-        btn_MDroite.hidden = true
-        btn_MGauche.hidden = true
-        btn_MHaut.hidden = true
-        btn_FPositif.hidden = true
-        btn_FNegatif.hidden = true
-        SCENE.rootNode.addChildNode(rotateNode)
+        let ROTATE_NODE = SCNNode()
+        
+        BTN_RIGHT_NEGATIVE.hidden = true
+        BTN_UP_NEGATIVE.hidden = true
+        BTN_DOWN_NEGATIVE.hidden = true
+        BTN_LEFT_NEGATIVE.hidden = true
+        BTN_RIGHT_POSITIVE.hidden = true
+        BTN_UP_POSITIVE.hidden = true
+        BTN_DOWN_POSITIVE.hidden = true
+        BTN_LEFT_POSITIVE.hidden = true
+        BTN_MIDDLE_DOWN.hidden = true
+        BTN_MIDDLE_RIGHT.hidden = true
+        BTN_MIDDLE_LEFT.hidden = true
+        BTN_MIDDLEUP.hidden = true
+        BTN_FRONT_POSITIVE.hidden = true
+        BTN_FRONT_NEGATIVE.hidden = true
+        
+        SCENE.rootNode.addChildNode(ROTATE_NODE)
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
-        let rightCubelets = cubelets.filter { node in
+        let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.z - 1) < 0.001
         }
-        rightCubelets.map { rotateNode.addChildNode($0)
-            
-        }
-        
-        
+        RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         // animate a rotation
-        
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
-        rotateNode.eulerAngles.z += Float(M_PI_2)
+        ROTATE_NODE.eulerAngles.z += Float(M_PI_2)
+        
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
             // and re-add them to the parent node with their transforms altered
-            rotateNode.enumerateChildNodesUsingBlock { cubelet, _ in
+            ROTATE_NODE.enumerateChildNodesUsingBlock { cubelet, _ in
                 cubelet.transform = cubelet.worldTransform
                 cubelet.removeFromParentNode()
-                self.SCENE.rootNode.addChildNode(cubelet)
                 
+                self.SCENE.rootNode.addChildNode(cubelet)
             }
-            self.BTN_DNEGATIF.hidden = false
-            self.btn_HNegatif.hidden = false
-            self.btn_BNegatif.hidden = false
-            self.btn_GNegatif.hidden = false
-            self.btn_DPositif.hidden = false
-            self.btn_HPositif.hidden = false
-            self.btn_BPositif.hidden = false
-            self.btn_GPositif.hidden = false
-            self.btn_MBas.hidden = false
-            self.btn_MDroite.hidden = false
-            self.btn_MGauche.hidden = false
-            self.btn_MHaut.hidden = false
-            self.btn_FPositif.hidden = false
-            self.btn_FNegatif.hidden = false
-            rotateNode.removeFromParentNode()
+            self.BTN_RIGHT_NEGATIVE.hidden = false
+            self.BTN_UP_NEGATIVE.hidden = false
+            self.BTN_DOWN_NEGATIVE.hidden = false
+            self.BTN_LEFT_NEGATIVE.hidden = false
+            self.BTN_RIGHT_POSITIVE.hidden = false
+            self.BTN_UP_POSITIVE.hidden = false
+            self.BTN_DOWN_POSITIVE.hidden = false
+            self.BTN_LEFT_POSITIVE.hidden = false
+            self.BTN_MIDDLE_DOWN.hidden = false
+            self.BTN_MIDDLE_RIGHT.hidden = false
+            self.BTN_MIDDLE_LEFT.hidden = false
+            self.BTN_MIDDLEUP.hidden = false
+            self.BTN_FRONT_POSITIVE.hidden = false
+            self.BTN_FRONT_NEGATIVE.hidden = false
+            
+            ROTATE_NODE.removeFromParentNode()
         }
-        
         SCNTransaction.commit()
         
         scnRubiksCube.scene = SCENE
-        
     }
     
-    func RubiksCube() {
-        /*
-        D- -> rotateNode.eulerAngles.x += Float(M_PI_2) return abs(node.position.x - 1) < 0.001
-        D+ -> rotateNode.eulerAngles.x -= Float(M_PI_2) return abs(node.position.x - 1) < 0.001
-        G+ -> rotateNode.eulerAngles.x += Float(M_PI_2) return abs(node.position.x + 1) < 0.001
-        G- -> rotateNode.eulerAngles.x -= Float(M_PI_2) return abs(node.position.x + 1) < 0.001
-        M vers le haut -> rotateNode.eulerAngles.x -= Float(M_PI_2) return abs(node.position.x) < 0.001
-        M vers le bas -> rotateNode.eulerAngles.x += Float(M_PI_2) return abs(node.position.x) < 0.001
-        
-        H- -> rotateNode.eulerAngles.y += Float(M_PI_2) return abs(node.position.x - 1) < 0.001
-        H+ -> rotateNode.eulerAngles.y -= Float(M_PI_2) return abs(node.position.x - 1) < 0.001
-        B- -> rotateNode.eulerAngles.y += Float(M_PI_2) return abs(node.position.x + 1) < 0.001
-        B+ -> rotateNode.eulerAngles.y -= Float(M_PI_2) return abs(node.position.x + 1) < 0.001
-        M vers la droite -> rotateNode.eulerAngles.y += Float(M_PI_2) return abs(node.position.x) < 0.001
-        M vers la gauche -> rotateNode.eulerAngles.y -= Float(M_PI_2) return abs(node.position.x) < 0.001
-        
-        F- -> rotateNode.eulerAngles.y += Float(M_PI_2) return abs(node.position.x - 1) < 0.001
-        F+ -> rotateNode.eulerAngles.y -= Float(M_PI_2) return abs(node.position.x - 1) < 0.001
-        D- -> rotateNode.eulerAngles.y += Float(M_PI_2) return abs(node.position.x + 1) < 0.001
-        D+ -> rotateNode.eulerAngles.y -= Float(M_PI_2) return abs(node.position.x + 1) < 0.001
-        MC vers la gauche -> rotateNode.eulerAngles.y += Float(M_PI_2) return abs(node.position.x) < 0.001
-        MC vers la droite -> rotateNode.eulerAngles.y -= Float(M_PI_2) return abs(node.position.x) < 0.001
-        
-        */
-        
-        
-
-
-    }
-    
-    // MARK: Scene
-    func sceneSetup1() {
+    ///
+    /// Nom : addCamera
+    /// Description : Cette fonction permet de tourner la ligne FrontNegative et de cacher les boutons pendant l'animation.
+    ///
+    func addCamera() {
         // 1
-        let scene = SCNScene()
-        
+        let SCENE = SCNScene()
         
         CAMERA_NODE.camera = SCNCamera()
         CAMERA_NODE.position = SCNVector3Make(0, 0, 30)
         CAMERA_NODE.rotation = SCNVector4Make(0, 0, 1, CFloat( -M_PI_4 ) * 2 )
         CAMERA_NODE.eulerAngles.x = Float(-M_PI)
         CAMERA_NODE.eulerAngles.y = Float(-2 * -M_PI)
-        scene.rootNode.addChildNode(CAMERA_NODE)
-        //self.view.userInteractionEnabled = false
         
+        SCENE.rootNode.addChildNode(CAMERA_NODE)
         
+        let PAN_RECOGNIZER = UIPanGestureRecognizer(target: self, action: #selector(ViewController2.panGesture(_:)))
         
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: "panGesture:")
-        scnRubiksCube.addGestureRecognizer(panRecognizer)
+        scnRubiksCube.addGestureRecognizer(PAN_RECOGNIZER)
         
         // 3
-        scnRubiksCube.scene = scene
-        
-        scnRubiksCube.allowsCameraControl = true
-        
-    }
-    // MARK: Scene
-    func sceneSetup2() {
-        // 1
-        let scene = SCNScene()
-        
-        
-        CAMERA_NODE.camera = SCNCamera()
-        CAMERA_NODE.position = SCNVector3Make(0, 0, 30)
-        CAMERA_NODE.rotation = SCNVector4Make(0, 0, 1, CFloat( -M_PI_4 ) * 2 )
-        scene.rootNode.addChildNode(CAMERA_NODE)
-        //self.view.userInteractionEnabled = false
-        
-        
-        
-        
-        
+        scnRubiksCube.scene = SCENE
     }
     
-    
-    func panGesture(sender: UIPanGestureRecognizer) {
-        let translation = sender.translationInView(sender.view!)
-        var newAngle = (Float)(translation.x)*(Float)(M_PI)/180.0
+    ///
+    /// Nom : panGesture
+    /// Description : Cette fonction permet à l'utilisateur d'avoir une gestion des mouvements avec le tactile
+    /// Paramètre : sender : UIPanGestureRecognizer
+    ///
+    func panGesture(sender : UIPanGestureRecognizer) {
+        let TRANSLATION = sender.translationInView(sender.view!)
+        
+        var newAngle = (Float)(TRANSLATION.x)*(Float)(M_PI)/180.0
+        
         newAngle += currentAngle
         
         GEOMETRY_NODE.transform = SCNMatrix4MakeRotation(newAngle, 0, 1, 0)
@@ -1358,503 +1473,20 @@ class ViewController2 : UIViewController {
             currentAngle = newAngle
         }
     }
-    
-    // MARK: IBActions
-    @IBAction func segmentValueChanged(sender: UISegmentedControl) {
-        // 1
-        GEOMETRY_NODE.removeFromParentNode()
-        currentAngle = 0.0
-        
-        //geometryNode = allPyra1()
-        
-        
-        
-    }
-    
-    // MARK: Style
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
-    // MARK: Transition
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        scnRubiksCube.stop(nil)
-        scnRubiksCube.play(nil)
-    }
-    /*
-    func Cylinder() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    
-    func Cylinder2() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    
-    func Cylinder3() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder4() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder5() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder6() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder7() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder8() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder9() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.orangeColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder10() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.greenColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    
-    func Cylinder11() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.yellowColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    
-    func Cylinder12() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.blueColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder13() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.greenColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder14() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.blackColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder15() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.blueColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder16() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.greenColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder17() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.whiteColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder18() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.blueColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder19() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    
-    func Cylinder20() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    
-    func Cylinder21() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder22() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder23() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder24() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder25() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder26() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    func Cylinder27() -> SCNGeometry {
-        // 1
-        let Cylinder = SCNBox(width: 2.0, height: 2.0, length: 2.0, chamferRadius: 0.5)
-        
-        // 2
-        Cylinder.firstMaterial!.diffuse.contents = UIColor.redColor()
-        
-        // 3
-        Cylinder.firstMaterial!.specular.contents = UIColor.whiteColor()
-        
-        // 4
-        return Cylinder
-    }
-    
-    func allPyra1() -> SCNNode {
 
-        let PyramidNode = SCNNode(geometry: Cylinder())
-        let PyramidNode2 = SCNNode(geometry: Cylinder2())
-        let PyramidNode3 = SCNNode(geometry: Cylinder3())
-        PyramidNode.position = SCNVector3Make(0, 2, 0)
-        PyramidNode2.position = SCNVector3Make(0, 0, 0)
-        PyramidNode3.position = SCNVector3Make(0, -2, 0)
+    ///
+    /// Nom : changeMaterialWithColor
+    /// Description : Cette fonction permet la gestion des couleurs des mini cubes du Rubik's cube
+    /// Paramètre : color : UIColor
+    /// Retour : mat
+    ///
+    func changeMaterialWithColor(color : UIColor) -> SCNMaterial {
+        let MAT = SCNMaterial()
         
-        PyraNode1.addChildNode(PyramidNode)
-        PyraNode1.addChildNode(PyramidNode2)
-        PyraNode1.addChildNode(PyramidNode3)
-
-        let PyramidNode4 = SCNNode(geometry: Cylinder4())
-        let PyramidNode5 = SCNNode(geometry: Cylinder5())
-        let PyramidNode6 = SCNNode(geometry: Cylinder6())
-        PyramidNode4.position = SCNVector3Make(-2, 2, 0)
-        PyramidNode5.position = SCNVector3Make(-2, 0, 0)
-        PyramidNode6.position = SCNVector3Make(-2, -2, 0)
+        MAT.diffuse.contents = color
+        MAT.specular.contents = UIColor.whiteColor()
         
-        PyraNode1.addChildNode(PyramidNode4)
-        PyraNode1.addChildNode(PyramidNode5)
-        PyraNode1.addChildNode(PyramidNode6)
-        
-        let PyramidNode7 = SCNNode(geometry: Cylinder7())
-        let PyramidNode8 = SCNNode(geometry: Cylinder8())
-        let PyramidNode9 = SCNNode(geometry: Cylinder9())
-        PyramidNode7.position = SCNVector3Make(-4, 2, 0)
-        PyramidNode8.position = SCNVector3Make(-4, 0, 0)
-        PyramidNode9.position = SCNVector3Make(-4, -2, 0)
-        
-        PyraNode1.addChildNode(PyramidNode7)
-        PyraNode1.addChildNode(PyramidNode8)
-        PyraNode1.addChildNode(PyramidNode9)
-        
-        let PyramidNode10 = SCNNode(geometry: Cylinder10())
-        let PyramidNode11 = SCNNode(geometry: Cylinder11())
-        let PyramidNode12 = SCNNode(geometry: Cylinder12())
-        PyramidNode10.position = SCNVector3Make(0, 2, -2)
-        PyramidNode11.position = SCNVector3Make(0, 0, -2)
-        PyramidNode12.position = SCNVector3Make(0, -2, -2)
-        
-        PyraNode1.addChildNode(PyramidNode10)
-        PyraNode1.addChildNode(PyramidNode11)
-        PyraNode1.addChildNode(PyramidNode12)
-        
-        let PyramidNode13 = SCNNode(geometry: Cylinder13())
-        let PyramidNode14 = SCNNode(geometry: Cylinder14())
-        let PyramidNode15 = SCNNode(geometry: Cylinder15())
-        PyramidNode13.position = SCNVector3Make(-2, 2, -2)
-        PyramidNode14.position = SCNVector3Make(-2, 0, -2)
-        PyramidNode15.position = SCNVector3Make(-2, -2, -2)
-        
-        PyraNode1.addChildNode(PyramidNode13)
-        PyraNode1.addChildNode(PyramidNode14)
-        PyraNode1.addChildNode(PyramidNode15)
-        
-        let PyramidNode16 = SCNNode(geometry: Cylinder16())
-        let PyramidNode17 = SCNNode(geometry: Cylinder17())
-        let PyramidNode18 = SCNNode(geometry: Cylinder18())
-        PyramidNode16.position = SCNVector3Make(-4, 2, -2)
-        PyramidNode17.position = SCNVector3Make(-4, 0, -2)
-        PyramidNode18.position = SCNVector3Make(-4, -2, -2)
-        
-        PyraNode1.addChildNode(PyramidNode16)
-        PyraNode1.addChildNode(PyramidNode17)
-        PyraNode1.addChildNode(PyramidNode18)
-        
-        let PyramidNode19 = SCNNode(geometry: Cylinder19())
-        let PyramidNode20 = SCNNode(geometry: Cylinder20())
-        let PyramidNode21 = SCNNode(geometry: Cylinder21())
-        PyramidNode19.position = SCNVector3Make(0, 2, -4)
-        PyramidNode20.position = SCNVector3Make(0, 0, -4)
-        PyramidNode21.position = SCNVector3Make(0, -2, -4)
-        
-        PyraNode1.addChildNode(PyramidNode19)
-        PyraNode1.addChildNode(PyramidNode20)
-        PyraNode1.addChildNode(PyramidNode21)
-        
-        let PyramidNode22 = SCNNode(geometry: Cylinder22())
-        let PyramidNode23 = SCNNode(geometry: Cylinder23())
-        let PyramidNode24 = SCNNode(geometry: Cylinder24())
-        PyramidNode22.position = SCNVector3Make(-2, 2, -4)
-        PyramidNode23.position = SCNVector3Make(-2, 0, -4)
-        PyramidNode24.position = SCNVector3Make(-2, -2, -4)
-        
-        PyraNode1.addChildNode(PyramidNode22)
-        PyraNode1.addChildNode(PyramidNode23)
-        PyraNode1.addChildNode(PyramidNode24)
-        
-        let PyramidNode25 = SCNNode(geometry: Cylinder25())
-        let PyramidNode26 = SCNNode(geometry: Cylinder26())
-        let PyramidNode27 = SCNNode(geometry: Cylinder27())
-        PyramidNode25.position = SCNVector3Make(-4, 2, -4)
-        PyramidNode26.position = SCNVector3Make(-4, 0, -4)
-        PyramidNode27.position = SCNVector3Make(-4, -2, -4)
-        
-        PyraNode1.addChildNode(PyramidNode25)
-        PyraNode1.addChildNode(PyramidNode26)
-        PyraNode1.addChildNode(PyramidNode27)
-        
-        return PyraNode1
-    }*/
-
-    // convenience for creating solid color materials
-    func materialWithColor(color: UIColor) -> SCNMaterial {
-        let mat = SCNMaterial()
-        mat.diffuse.contents = color
-        mat.specular.contents = UIColor.whiteColor()
-        return mat
+        return MAT
     }
-    // create and arrange a 3x3x3 array of cubelets
-
-    
-    
 }
 

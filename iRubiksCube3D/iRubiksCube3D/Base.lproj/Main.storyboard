@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1808" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -25,7 +25,7 @@
                                 </constraints>
                                 <state key="normal" title="Jouer au jeu"/>
                                 <connections>
-                                    <action selector="btn_gameTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="6uC-Rf-wzQ"/>
+                                    <action selector="touchPlayButton:" destination="BYZ-38-t0r" eventType="touchDown" id="oTT-sZ-PsX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLm-6b-d0J">
@@ -35,7 +35,7 @@
                                 </constraints>
                                 <state key="normal" title="Quitter"/>
                                 <connections>
-                                    <action selector="btn_exitTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="yZe-oS-PjW"/>
+                                    <action selector="touchExitButton:" destination="BYZ-38-t0r" eventType="touchDown" id="WSB-po-Rgm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rubik's cube" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkS-AU-bab">
@@ -62,9 +62,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btn_exit" destination="xLm-6b-d0J" id="c1l-wJ-fZc"/>
-                        <outlet property="btn_game" destination="hRV-02-nXY" id="wcs-5Z-hGT"/>
-                        <outlet property="scn_menu" destination="8bC-Xf-vdC" id="iLW-KA-QB9"/>
+                        <outlet property="btnExitGame" destination="xLm-6b-d0J" id="E4l-8f-wPE"/>
+                        <outlet property="btnPlayGame" destination="hRV-02-nXY" id="fAC-aR-nma"/>
                         <segue destination="lw4-We-f6u" kind="show" identifier="ToSecond" id="OxE-xe-IoR"/>
                     </connections>
                 </viewController>
