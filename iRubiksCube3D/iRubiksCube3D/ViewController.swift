@@ -1,35 +1,40 @@
-//
-//  ViewController.swift
-//  iRubiksCube3D
-//
-//  Created by Jérémy Perriraz on 26.05.16.
-//  Copyright © 2016 perrirazje. All rights reserved.
-//
+///
+/// ETML
+/// Auteur : Jérémy Perriraz
+/// Date : 26.05.2016
+/// Description : Fichier qui contrôle toute la vue du menu principale,
+///               c'est ici que tout ce qui concerne cette vue sera fait.
+///
 
 import UIKit
 import SceneKit
 
+///
+/// Nom : ViewController
+/// Description : C'est la classe où il y aura tout le code de cette vue
+///
 class ViewController: UIViewController {
 
-    // Initialisation des boutons pour les utiliser plus loin
-    @IBOutlet weak var btn_game: UIButton!
-    @IBOutlet weak var btn_exit: UIButton!
-    @IBOutlet var scn_menu: UIView!
-    @IBOutlet var scn_menuRubiks: UIView!
+    @IBOutlet weak var btnPlayGame: UIButton!
+    @IBOutlet weak var btnExitGame: UIButton!
+    @IBOutlet weak var imgRubiksCube: UIImageView!
 
-    // Lors du clique du bouton, la vue du Rubik's cube se lance
-    @IBAction func btn_gameTouch(sender: AnyObject) {
-
+    ///
+    /// Nom : touchPlayButton
+    /// Description : C'est la fonction qui se lance quand on touche le bouton PlayGame
+    /// Paramètre : animated : Bool
+    ///
+    @IBAction func touchPlayButton(sender: AnyObject) {
         performSegueWithIdentifier("ToSecond", sender: nil)
-        
     }
     
-    // lors du clique du bouton, l'application se ferme
-    @IBAction func btn_exitTouch(sender: AnyObject) {
+    ///
+    /// Nom : touchExitButton
+    /// Description : C'est la fonction qui se lance quand on touche le bouton ExitGame
+    /// Paramètre : animated : Bool
+    ///
+    @IBAction func touchExitButton(sender: AnyObject) {
         exit(0)
     }
-    
-
-    
 }
 

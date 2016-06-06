@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iRubiksCube3D/ViewController2.swift"
-            timestampString = "486655164.833397"
+            timestampString = "486899151.406466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1133"
-            endingLineNumber = "1133"
-            landmarkName = "MGauche()"
+            startingLineNumber = "1409"
+            endingLineNumber = "1409"
+            landmarkName = "turnDownNegative()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,13 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iRubiksCube3D/ViewController2.swift"
-            timestampString = "486655164.833397"
+            timestampString = "486898924.510598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
-            landmarkName = "rnd_RubiksCube()"
-            landmarkType = "5">
+            startingLineNumber = "446"
+            endingLineNumber = "446"
+            landmarkName = "ViewController2"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iRubiksCube3D/ViewController2.swift"
-            timestampString = "486655164.833397"
+            timestampString = "486898924.510598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
-            landmarkName = "rnd_RubiksCube()"
-            landmarkType = "5">
+            startingLineNumber = "447"
+            endingLineNumber = "447"
+            landmarkName = "ViewController2"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iRubiksCube3D/ViewController2.swift"
-            timestampString = "486653296.96775"
+            timestampString = "486898817.653463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>

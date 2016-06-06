@@ -1,10 +1,10 @@
-//
-//  AppDelegate.swift
-//  iRubiksCube3D
-//
-//  Created by Jérémy Perriraz on 26.05.16.
-//  Copyright © 2016 perrirazje. All rights reserved.
-//
+///
+/// ETML
+/// Auteur : Jérémy Perriraz
+/// Date : 26.05.2016
+/// Description : Ce fichier est créé de base quand l'on crée une projet. Je l'ai laissé tel quel.
+//                Je ne vais donc pas le commenter.
+///
 
 import UIKit
 

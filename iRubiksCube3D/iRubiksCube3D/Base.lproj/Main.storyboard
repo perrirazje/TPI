@@ -25,7 +25,7 @@
                                 </constraints>
                                 <state key="normal" title="Jouer au jeu"/>
                                 <connections>
-                                    <action selector="btn_gameTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="6uC-Rf-wzQ"/>
+                                    <action selector="touchPlayButton:" destination="BYZ-38-t0r" eventType="touchDown" id="oTT-sZ-PsX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLm-6b-d0J">
@@ -35,7 +35,7 @@
                                 </constraints>
                                 <state key="normal" title="Quitter"/>
                                 <connections>
-                                    <action selector="btn_exitTouch:" destination="BYZ-38-t0r" eventType="touchDown" id="yZe-oS-PjW"/>
+                                    <action selector="touchExitButton:" destination="BYZ-38-t0r" eventType="touchDown" id="WSB-po-Rgm"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rubik's cube" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkS-AU-bab">
@@ -47,6 +47,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Image9Rapport" translatesAutoresizingMaskIntoConstraints="NO" id="wWj-iy-NI5">
+                                <rect key="frame" x="225" y="317" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="5s4-qT-ueV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -55,16 +61,18 @@
                             <constraint firstItem="pkS-AU-bab" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="D5Q-WP-2C2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hRV-02-nXY" secondAttribute="trailing" id="EIv-ru-mmZ"/>
                             <constraint firstItem="hRV-02-nXY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="212" id="Ebh-Oo-hiY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wWj-iy-NI5" secondAttribute="trailing" constant="55" id="H15-VW-Fqn"/>
                             <constraint firstItem="xLm-6b-d0J" firstAttribute="top" secondItem="hRV-02-nXY" secondAttribute="bottom" constant="8" symbolic="YES" id="NW2-Id-1K6"/>
+                            <constraint firstItem="wWj-iy-NI5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="55" id="cdz-aI-kAO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xLm-6b-d0J" secondAttribute="trailing" id="ek0-5F-l5h"/>
                             <constraint firstItem="xLm-6b-d0J" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="g28-rO-sXi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pkS-AU-bab" secondAttribute="trailing" id="pF7-wV-D3m"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btn_exit" destination="xLm-6b-d0J" id="c1l-wJ-fZc"/>
-                        <outlet property="btn_game" destination="hRV-02-nXY" id="wcs-5Z-hGT"/>
-                        <outlet property="scn_menu" destination="8bC-Xf-vdC" id="iLW-KA-QB9"/>
+                        <outlet property="btnExitGame" destination="xLm-6b-d0J" id="E4l-8f-wPE"/>
+                        <outlet property="btnPlayGame" destination="hRV-02-nXY" id="fAC-aR-nma"/>
+                        <outlet property="imgRubiksCube" destination="wWj-iy-NI5" id="7pQ-mv-l9e"/>
                         <segue destination="lw4-We-f6u" kind="show" identifier="ToSecond" id="OxE-xe-IoR"/>
                     </connections>
                 </viewController>
@@ -139,6 +147,7 @@
                     </view>
                     <connections>
                         <outlet property="scnRubiksCube" destination="moa-Wk-6x6" id="hWy-s9-Gta"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ToFirst" id="QpI-dk-3jX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIY-4W-3dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,4 +155,7 @@
             <point key="canvasLocation" x="1082" y="465"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Image9Rapport" width="238" height="236"/>
+    </resources>
 </document>
