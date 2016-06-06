@@ -19,6 +19,7 @@ class ViewController2 : UIViewController {
 
     let CAMERA_NODE = SCNNode()
     let SCENE = SCNScene()
+<<<<<<< HEAD
     let ARRAYS_MOVEMENTS = [
         "RightPositive",
         "LeftNegative",
@@ -37,6 +38,9 @@ class ViewController2 : UIViewController {
         "MiddlePositive",
         "MiddleNegative"
     ]
+=======
+    let ARRAYS_MOVEMENTS = ["RightPositive", "LeftNegative", "RightNegative", "LeftPositive", "MiddleUp", "MiddleDown",         "UpNegative", "UpPositive", "MiddleRight", "MiddleLeft", "DownPositive", "DownNegative", "FrontPositive", "FrontNegative"]
+>>>>>>> origin/master
     let GEOMETRY_NODE : SCNNode = SCNNode()
     let BTN_RIGHT_NEGATIVE   = UIButton(type: UIButtonType.System) as UIButton
     let BTN_RIGHT_POSITIVE   = UIButton(type: UIButtonType.System) as UIButton
@@ -52,6 +56,7 @@ class ViewController2 : UIViewController {
     let BTN_MIDDLE_LEFT   = UIButton(type: UIButtonType.System) as UIButton
     let BTN_FRONT_POSITIVE   = UIButton(type: UIButtonType.System) as UIButton
     let BTN_FRONT_NEGATIVE   = UIButton(type: UIButtonType.System) as UIButton
+<<<<<<< HEAD
     let BTN_FRONT_RIGHT   = UIButton(type: UIButtonType.System) as UIButton
     let BTN_FRONT_LEFT   = UIButton(type: UIButtonType.System) as UIButton
     let BTN_FRONT_UP   = UIButton(type: UIButtonType.System) as UIButton
@@ -59,6 +64,8 @@ class ViewController2 : UIViewController {
     let BTN_FRONT_MIDDLE_NEGATIVE   = UIButton(type: UIButtonType.System) as UIButton
     let BTN_FRONT_MIDDLE_POSITIVE = UIButton(type: UIButtonType.System) as UIButton
     let BTN_BACK_TO_MENU = UIButton(type: UIButtonType.System) as UIButton
+=======
+>>>>>>> origin/master
     
     var currentAngle: Float = 0.0
     var cubelets : [SCNNode] = []
@@ -80,12 +87,21 @@ class ViewController2 : UIViewController {
                     let SCN_BOX = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.1)
                     
                     SCN_BOX.materials = [
+<<<<<<< HEAD
                         changeMaterialWithColor("/Users/perrirazje/Desktop/TPI/iRubiksCube3D/Picture/red.png"),
                         changeMaterialWithColor("/Users/perrirazje/Desktop/TPI/iRubiksCube3D/Picture/green.png"),
                         changeMaterialWithColor("/Users/perrirazje/Desktop/TPI/iRubiksCube3D/Picture/orange.png"),
                         changeMaterialWithColor("/Users/perrirazje/Desktop/TPI/iRubiksCube3D/Picture/blue.png"),
                         changeMaterialWithColor("/Users/perrirazje/Desktop/TPI/iRubiksCube3D/Picture/white.png"),
                         changeMaterialWithColor("/Users/perrirazje/Desktop/TPI/iRubiksCube3D/Picture/yellow.png"),
+=======
+                        changeMaterialWithColor(UIColor.greenColor()),
+                        changeMaterialWithColor(UIColor.redColor()),
+                        changeMaterialWithColor(UIColor.blueColor()),
+                        changeMaterialWithColor(UIColor.orangeColor()),
+                        changeMaterialWithColor(UIColor.whiteColor()),
+                        changeMaterialWithColor(UIColor.yellowColor()),
+>>>>>>> origin/master
                     ]
                 
                     let SCN_NODE = SCNNode(geometry: SCN_BOX)
@@ -152,8 +168,13 @@ class ViewController2 : UIViewController {
         BTN_RIGHT_NEGATIVE.layer.borderWidth = 1.0
         BTN_RIGHT_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_RIGHT_NEGATIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_RIGHT_NEGATIVE.setTitle("⬇️", forState: UIControlState.Normal)
         BTN_RIGHT_NEGATIVE.addTarget(self, action: "activateBtnRightNegative:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_RIGHT_NEGATIVE.setTitle("D-", forState: UIControlState.Normal)
+        BTN_RIGHT_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnRightNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_RIGHT_NEGATIVE)
 
         BTN_RIGHT_POSITIVE.frame = CGRectMake(225, 140, 25, 25)
@@ -161,8 +182,13 @@ class ViewController2 : UIViewController {
         BTN_RIGHT_POSITIVE.layer.borderWidth = 1.0
         BTN_RIGHT_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_RIGHT_POSITIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_RIGHT_POSITIVE.setTitle("⬆️", forState: UIControlState.Normal)
         BTN_RIGHT_POSITIVE.addTarget(self, action: "activateBtnRightPositive:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_RIGHT_POSITIVE.setTitle("D+", forState: UIControlState.Normal)
+        BTN_RIGHT_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnRightPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_RIGHT_POSITIVE)
         
         BTN_LEFT_POSITIVE.frame = CGRectMake(60, 420, 25, 25)
@@ -170,8 +196,13 @@ class ViewController2 : UIViewController {
         BTN_LEFT_POSITIVE.layer.borderWidth = 1.0
         BTN_LEFT_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_LEFT_POSITIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_LEFT_POSITIVE.setTitle("⬇️", forState: UIControlState.Normal)
         BTN_LEFT_POSITIVE.addTarget(self, action: "activateBtnLeftPositive:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_LEFT_POSITIVE.setTitle("G+", forState: UIControlState.Normal)
+        BTN_LEFT_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnLeftPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_LEFT_POSITIVE)
         
         BTN_LEFT_NEGATIVE.frame = CGRectMake(60, 140, 25, 25)
@@ -179,8 +210,13 @@ class ViewController2 : UIViewController {
         BTN_LEFT_NEGATIVE.layer.borderWidth = 1.0
         BTN_LEFT_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_LEFT_NEGATIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_LEFT_NEGATIVE.setTitle("⬆️", forState: UIControlState.Normal)
         BTN_LEFT_NEGATIVE.addTarget(self, action: "activateBtnLeftNegative:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_LEFT_NEGATIVE.setTitle("G-", forState: UIControlState.Normal)
+        BTN_LEFT_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnLeftNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_LEFT_NEGATIVE)
         
         BTN_MIDDLEUP.frame = CGRectMake(140, 140, 25, 25)
@@ -188,8 +224,13 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.layer.borderWidth = 1.0
         BTN_MIDDLEUP.layer.borderColor = UIColor.blackColor().CGColor
         BTN_MIDDLEUP.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_MIDDLEUP.setTitle("⬆️", forState: UIControlState.Normal)
         BTN_MIDDLEUP.addTarget(self, action: "activateBtnMiddleUp:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_MIDDLEUP.setTitle("MH", forState: UIControlState.Normal)
+        BTN_MIDDLEUP.addTarget(self, action: #selector(ViewController2.activateBtnMiddleUp(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_MIDDLEUP)
         
         BTN_MIDDLE_DOWN.frame = CGRectMake(140, 420, 25, 25)
@@ -197,8 +238,13 @@ class ViewController2 : UIViewController {
         BTN_MIDDLE_DOWN.layer.borderWidth = 1.0
         BTN_MIDDLE_DOWN.layer.borderColor = UIColor.blackColor().CGColor
         BTN_MIDDLE_DOWN.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_MIDDLE_DOWN.setTitle("⬇️", forState: UIControlState.Normal)
         BTN_MIDDLE_DOWN.addTarget(self, action: "activateBtnMiddleDown:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_MIDDLE_DOWN.setTitle("MB", forState: UIControlState.Normal)
+        BTN_MIDDLE_DOWN.addTarget(self, action: #selector(ViewController2.activateBtnMiddleDown(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_MIDDLE_DOWN)
         
         BTN_UP_NEGATIVE.frame = CGRectMake(285, 200, 25, 25)
@@ -206,8 +252,13 @@ class ViewController2 : UIViewController {
         BTN_UP_NEGATIVE.layer.borderWidth = 1.0
         BTN_UP_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_UP_NEGATIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_UP_NEGATIVE.setTitle("➡️", forState: UIControlState.Normal)
         BTN_UP_NEGATIVE.addTarget(self, action: "activateBtnUpNegative:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_UP_NEGATIVE.setTitle("H-", forState: UIControlState.Normal)
+        BTN_UP_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnUpNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_UP_NEGATIVE)
         
         BTN_UP_POSITIVE.frame = CGRectMake(10, 200, 25, 25)
@@ -215,8 +266,13 @@ class ViewController2 : UIViewController {
         BTN_UP_POSITIVE.layer.borderWidth = 1.0
         BTN_UP_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_UP_POSITIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_UP_POSITIVE.setTitle("⬅️", forState: UIControlState.Normal)
         BTN_UP_POSITIVE.addTarget(self, action: "activateBtnUpPositive:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_UP_POSITIVE.setTitle("H+", forState: UIControlState.Normal)
+        BTN_UP_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnUpPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_UP_POSITIVE)
         
         BTN_DOWN_POSITIVE.frame = CGRectMake(285, 360, 25, 25)
@@ -224,8 +280,13 @@ class ViewController2 : UIViewController {
         BTN_DOWN_POSITIVE.layer.borderWidth = 1.0
         BTN_DOWN_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_DOWN_POSITIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_DOWN_POSITIVE.setTitle("➡️", forState: UIControlState.Normal)
         BTN_DOWN_POSITIVE.addTarget(self, action: "activateBtnDownPositive:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_DOWN_POSITIVE.setTitle("B+", forState: UIControlState.Normal)
+        BTN_DOWN_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnDownPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_DOWN_POSITIVE)
         
         BTN_DOWN_NEGATIVE.frame = CGRectMake(10, 360, 25, 25)
@@ -233,8 +294,13 @@ class ViewController2 : UIViewController {
         BTN_DOWN_NEGATIVE.layer.borderWidth = 1.0
         BTN_DOWN_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_DOWN_NEGATIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_DOWN_NEGATIVE.setTitle("⬅️", forState: UIControlState.Normal)
         BTN_DOWN_NEGATIVE.addTarget(self, action: "activateBtnDownNegative:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_DOWN_NEGATIVE.setTitle("B-", forState: UIControlState.Normal)
+        BTN_DOWN_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnDownNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_DOWN_NEGATIVE)
         
         BTN_MIDDLE_RIGHT.frame = CGRectMake(285, 280, 25, 25)
@@ -242,8 +308,13 @@ class ViewController2 : UIViewController {
         BTN_MIDDLE_RIGHT.layer.borderWidth = 1.0
         BTN_MIDDLE_RIGHT.layer.borderColor = UIColor.blackColor().CGColor
         BTN_MIDDLE_RIGHT.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_MIDDLE_RIGHT.setTitle("➡️", forState: UIControlState.Normal)
         BTN_MIDDLE_RIGHT.addTarget(self, action: "activateBtnMiddleRight:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_MIDDLE_RIGHT.setTitle("MD", forState: UIControlState.Normal)
+        BTN_MIDDLE_RIGHT.addTarget(self, action: #selector(ViewController2.activateBtnMiddleRight(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_MIDDLE_RIGHT)
         
         BTN_MIDDLE_LEFT.frame = CGRectMake(10, 280, 25, 25)
@@ -251,8 +322,13 @@ class ViewController2 : UIViewController {
         BTN_MIDDLE_LEFT.layer.borderWidth = 1.0
         BTN_MIDDLE_LEFT.layer.borderColor = UIColor.blackColor().CGColor
         BTN_MIDDLE_LEFT.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_MIDDLE_LEFT.setTitle("⬅️", forState: UIControlState.Normal)
         BTN_MIDDLE_LEFT.addTarget(self, action: "activateBtnMiddleLeft:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_MIDDLE_LEFT.setTitle("MG", forState: UIControlState.Normal)
+        BTN_MIDDLE_LEFT.addTarget(self, action: #selector(ViewController2.activateBtnMiddleLeft(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_MIDDLE_LEFT)
         
         BTN_FRONT_POSITIVE.frame = CGRectMake(160, 280, 25, 25)
@@ -260,8 +336,13 @@ class ViewController2 : UIViewController {
         BTN_FRONT_POSITIVE.layer.borderWidth = 1.0
         BTN_FRONT_POSITIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_FRONT_POSITIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_FRONT_POSITIVE.setTitle("↩️", forState: UIControlState.Normal)
         BTN_FRONT_POSITIVE.addTarget(self, action: "activateBtnFrontPositive:", forControlEvents: UIControlEvents.TouchUpInside)
+=======
+        BTN_FRONT_POSITIVE.setTitle("F+", forState: UIControlState.Normal)
+        BTN_FRONT_POSITIVE.addTarget(self, action: #selector(ViewController2.activateBtnFrontPositive(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+>>>>>>> origin/master
         self.view.addSubview(BTN_FRONT_POSITIVE)
         
         BTN_FRONT_NEGATIVE.frame = CGRectMake(130, 280, 25, 25)
@@ -269,6 +350,7 @@ class ViewController2 : UIViewController {
         BTN_FRONT_NEGATIVE.layer.borderWidth = 1.0
         BTN_FRONT_NEGATIVE.layer.borderColor = UIColor.blackColor().CGColor
         BTN_FRONT_NEGATIVE.layer.cornerRadius = 5.0
+<<<<<<< HEAD
         BTN_FRONT_NEGATIVE.setTitle("↪️", forState: UIControlState.Normal)
         BTN_FRONT_NEGATIVE.addTarget(self, action: "activateBtnFrontNegative:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(BTN_FRONT_NEGATIVE)
@@ -332,6 +414,11 @@ class ViewController2 : UIViewController {
         BTN_BACK_TO_MENU.setTitle("Retour", forState: UIControlState.Normal)
         BTN_BACK_TO_MENU.addTarget(self, action: "activateBtnBackToMenu:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(BTN_BACK_TO_MENU)
+=======
+        BTN_FRONT_NEGATIVE.setTitle("F-", forState: UIControlState.Normal)
+        BTN_FRONT_NEGATIVE.addTarget(self, action: #selector(ViewController2.activateBtnFrontNegative(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(BTN_FRONT_NEGATIVE)
+>>>>>>> origin/master
     }
     
     ///
@@ -400,6 +487,7 @@ class ViewController2 : UIViewController {
     /// Paramètre : sender : UIButton!
     ///
     func activateBtnUpNegative(sender:UIButton!)
+<<<<<<< HEAD
     {
         turnUpNegative()
     }
@@ -555,6 +643,93 @@ class ViewController2 : UIViewController {
     }
     
     ///
+=======
+    {
+        turnUpNegative()
+    }
+    
+    ///
+    /// Nom : activateBtnUpPositive
+    /// Description : Cette fonction lance la fonction turnUpPositive lorsque l'on clique sur le bouton UpPositive.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnUpPositive(sender:UIButton!)
+    {
+        turnUpPositive()
+    }
+    
+    ///
+    /// Nom : activateBtnDownPositive
+    /// Description : Cette fonction lance la fonction turnDownPositive lorsque l'on clique sur le bouton DownPositive.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnDownPositive(sender:UIButton!)
+    {
+        turnDownPositive()
+    }
+    
+    ///
+    /// Nom : activateBtnDownNegative
+    /// Description : Cette fonction lance la fonction turnDownNegative lorsque l'on clique sur le bouton DownDegative.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnDownNegative(sender:UIButton!)
+    {
+        turnDownNegative()
+    }
+    
+    ///
+    /// Nom : activateBtnMiddleRight
+    /// Description : Cette fonction lance la fonction turnMiddleRight lorsque l'on clique sur le bouton MiddleRight.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnMiddleRight(sender:UIButton!)
+    {
+        turnMiddleRight()
+    }
+    
+    ///
+    /// Nom : activateBtnMiddleLeft
+    /// Description : Cette fonction lance la fonction turnMiddleLeft lorsque l'on clique sur le bouton MiddleLeft.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnMiddleLeft(sender:UIButton!)
+    {
+        turnMiddleLeft()
+    }
+    
+    ///
+    /// Nom : activateBtnFrontPositive
+    /// Description : Cette fonction lance la fonction turnFrontPositive lorsque l'on clique sur le bouton FrontPositive.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnFrontPositive(sender:UIButton!)
+    {
+        turnFrontPositive()
+    }
+    
+    ///
+    /// Nom : activateBtnFrontNegative
+    /// Description : Cette fonction lance la fonction turnFrontNegative lorsque l'on clique sur le bouton FrontNegative.
+    /// Paramètre : sender : UIButton!
+    ///
+    func activateBtnFrontNegative(sender:UIButton!)
+    {
+        turnFrontNegative()
+    }
+    
+    ///
+    /// Nom : runAfterDelay
+    /// Description : Cette fonction permet de mettre un temps précis avant que ce qu'il y a dedans se passe.
+    /// Paramètre : delay : NSTimeInterval, block : dispatch_block_t
+    ///
+    func runAfterDelay(delay : NSTimeInterval, block : dispatch_block_t) {
+        let TIME = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+        dispatch_after(TIME, dispatch_get_main_queue(), block)
+    }
+    
+    ///
+>>>>>>> origin/master
     /// Nom : mixRubiksCube
     /// Description : Cette fonction permet de mélanger aléatoirement le Rubik's Cube
     ///
@@ -563,6 +738,7 @@ class ViewController2 : UIViewController {
 
         if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "RightPositive" {
             self.turnRightPositive()
+<<<<<<< HEAD
         }
         
         if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "RightNegative" {
@@ -623,6 +799,60 @@ class ViewController2 : UIViewController {
         
         if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleNegative" {
             self.turnFrontMiddleNegative()
+=======
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "RightNegative" {
+            self.turnRightNegative()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "UpNegative" {
+            self.turnUpNegative()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "UpPositive" {
+            self.turnUpPositive()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleUp" {
+            self.turnMiddleUp()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleDown" {
+            self.turnMiddleDown()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "DownNegative" {
+            self.turnDownNegative()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "DownPositive" {
+            self.turnDownPositive()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleRight" {
+            self.turnMiddleRight()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "MiddleLeft" {
+            self.turnMiddleLeft()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "FrontNegative" {
+            self.turnFrontNegative()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "FrontPositive" {
+            self.turnFrontPositive()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "LeftPositive" {
+            self.turnLeftPositive()
+        }
+        
+        if self.ARRAYS_MOVEMENTS[RANDOM_NUMBER] == "LeftNegative" {
+            self.turnLeftNegative()
+>>>>>>> origin/master
         }
     }
     
@@ -648,12 +878,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -668,7 +901,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -693,12 +930,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -729,12 +969,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -749,7 +992,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -774,12 +1021,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -810,12 +1060,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -830,7 +1083,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -855,12 +1112,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -891,12 +1151,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -911,7 +1174,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -936,12 +1203,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -972,12 +1242,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -992,7 +1265,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -1017,12 +1294,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1053,12 +1333,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1073,7 +1356,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.x -= Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.x += Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -1098,12 +1385,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1134,12 +1424,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1154,7 +1447,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -1179,12 +1476,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1215,12 +1515,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1235,7 +1538,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -1260,12 +1567,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1296,12 +1606,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1316,7 +1629,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -1341,12 +1658,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1377,12 +1697,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1397,7 +1720,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -1422,12 +1749,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1458,12 +1788,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1478,7 +1811,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
         
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -1503,12 +1840,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1539,12 +1879,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1559,7 +1902,11 @@ class ViewController2 : UIViewController {
         SCNTransaction.begin()
         SCNTransaction.setAnimationDuration(1)
 
+<<<<<<< HEAD
         ROTATE_NODE.eulerAngles.y += Float(M_PI_2)
+=======
+        ROTATE_NODE.eulerAngles.y -= Float(M_PI_2)
+>>>>>>> origin/master
         
         SCNTransaction.setCompletionBlock {
             // after animating, remove the cubelets from the rotation node,
@@ -1585,12 +1932,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1621,12 +1971,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1666,12 +2019,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1702,12 +2058,15 @@ class ViewController2 : UIViewController {
         BTN_MIDDLEUP.hidden = true
         BTN_FRONT_POSITIVE.hidden = true
         BTN_FRONT_NEGATIVE.hidden = true
+<<<<<<< HEAD
         BTN_FRONT_LEFT.hidden = true
         BTN_FRONT_RIGHT.hidden = true
         BTN_FRONT_UP.hidden = true
         BTN_FRONT_DOWN.hidden = true
         BTN_FRONT_MIDDLE_POSITIVE.hidden = true
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
+=======
+>>>>>>> origin/master
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
         
@@ -1747,12 +2106,15 @@ class ViewController2 : UIViewController {
             self.BTN_MIDDLEUP.hidden = false
             self.BTN_FRONT_POSITIVE.hidden = false
             self.BTN_FRONT_NEGATIVE.hidden = false
+<<<<<<< HEAD
             self.BTN_FRONT_LEFT.hidden = false
             self.BTN_FRONT_RIGHT.hidden = false
             self.BTN_FRONT_UP.hidden = false
             self.BTN_FRONT_DOWN.hidden = false
             self.BTN_FRONT_MIDDLE_NEGATIVE.hidden = false
             self.BTN_FRONT_MIDDLE_POSITIVE.hidden = false
+=======
+>>>>>>> origin/master
             
             ROTATE_NODE.removeFromParentNode()
         }
@@ -1762,6 +2124,7 @@ class ViewController2 : UIViewController {
     }
     
     ///
+<<<<<<< HEAD
     /// Nom : turnFrontLeft
     /// Description : Cette fonction permet de tourner la ligne FrontLeft et de cacher les boutons pendant l'animation.
     ///
@@ -1882,12 +2245,51 @@ class ViewController2 : UIViewController {
         BTN_FRONT_MIDDLE_NEGATIVE.hidden = true
         
         SCENE.rootNode.addChildNode(ROTATE_NODE)
+=======
+    /// Nom : addCamera
+    /// Description : Cette fonction permet de tourner la ligne FrontNegative et de cacher les boutons pendant l'animation.
+    ///
+    func addCamera() {
+        // 1
+        let SCENE = SCNScene()
+        
+        CAMERA_NODE.camera = SCNCamera()
+        CAMERA_NODE.position = SCNVector3Make(0, 0, 30)
+        CAMERA_NODE.rotation = SCNVector4Make(0, 0, 1, CFloat( -M_PI_4 ) * 2 )
+        CAMERA_NODE.eulerAngles.x = Float(-M_PI)
+        CAMERA_NODE.eulerAngles.y = Float(-2 * -M_PI)
+        
+        SCENE.rootNode.addChildNode(CAMERA_NODE)
+        
+        let PAN_RECOGNIZER = UIPanGestureRecognizer(target: self, action: #selector(ViewController2.panGesture(_:)))
+        
+        scnRubiksCube.addGestureRecognizer(PAN_RECOGNIZER)
+        
+        // 3
+        scnRubiksCube.scene = SCENE
+    }
+    
+    ///
+    /// Nom : panGesture
+    /// Description : Cette fonction permet à l'utilisateur d'avoir une gestion des mouvements avec le tactile
+    /// Paramètre : sender : UIPanGestureRecognizer
+    ///
+    func panGesture(sender : UIPanGestureRecognizer) {
+        let TRANSLATION = sender.translationInView(sender.view!)
+        
+        var newAngle = (Float)(TRANSLATION.x)*(Float)(M_PI)/180.0
+        
+        newAngle += currentAngle
+        
+        GEOMETRY_NODE.transform = SCNMatrix4MakeRotation(newAngle, 0, 1, 0)
+>>>>>>> origin/master
         
         // grab the set of cubelets whose position is along the right face of the puzzle,
         // and add them to the rotation node
         let RIGHT_CUBELETS = cubelets.filter { node in
             return abs(node.position.y - 1) < 0.001
         }
+<<<<<<< HEAD
         RIGHT_CUBELETS.map { ROTATE_NODE.addChildNode($0) }
         
         let LEFT_CUBELETS = cubelets.filter { node in
@@ -2342,5 +2744,23 @@ class ViewController2 : UIViewController {
         MAT.diffuse.contents = picture
         return MAT
     }
+=======
+    }
+
+    ///
+    /// Nom : changeMaterialWithColor
+    /// Description : Cette fonction permet la gestion des couleurs des mini cubes du Rubik's cube
+    /// Paramètre : color : UIColor
+    /// Retour : mat
+    ///
+    func changeMaterialWithColor(color : UIColor) -> SCNMaterial {
+        let MAT = SCNMaterial()
+        
+        MAT.diffuse.contents = color
+        MAT.specular.contents = UIColor.whiteColor()
+        
+        return MAT
+    }
+>>>>>>> origin/master
 }
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1808" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -72,7 +72,10 @@
                     <connections>
                         <outlet property="btnExitGame" destination="xLm-6b-d0J" id="E4l-8f-wPE"/>
                         <outlet property="btnPlayGame" destination="hRV-02-nXY" id="fAC-aR-nma"/>
+<<<<<<< HEAD
                         <outlet property="imgRubiksCube" destination="wWj-iy-NI5" id="7pQ-mv-l9e"/>
+=======
+>>>>>>> origin/master
                         <segue destination="lw4-We-f6u" kind="show" identifier="ToSecond" id="OxE-xe-IoR"/>
                     </connections>
                 </viewController>

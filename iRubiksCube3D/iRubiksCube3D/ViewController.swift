@@ -17,7 +17,10 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var btnPlayGame: UIButton!
     @IBOutlet weak var btnExitGame: UIButton!
+<<<<<<< HEAD
     @IBOutlet weak var imgRubiksCube: UIImageView!
+=======
+>>>>>>> origin/master
 
     ///
     /// Nom : touchPlayButton
