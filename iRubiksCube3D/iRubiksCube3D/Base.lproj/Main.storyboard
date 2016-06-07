@@ -72,10 +72,7 @@
                     <connections>
                         <outlet property="btnExitGame" destination="xLm-6b-d0J" id="E4l-8f-wPE"/>
                         <outlet property="btnPlayGame" destination="hRV-02-nXY" id="fAC-aR-nma"/>
-<<<<<<< HEAD
                         <outlet property="imgRubiksCube" destination="wWj-iy-NI5" id="7pQ-mv-l9e"/>
-=======
->>>>>>> origin/master
                         <segue destination="lw4-We-f6u" kind="show" identifier="ToSecond" id="OxE-xe-IoR"/>
                     </connections>
                 </viewController>
