@@ -173,7 +173,7 @@ class ViewController2 : UIViewController {
         BTN_RIGHT_NEGATIVE.setTitle("⬇️", forState: UIControlState.Normal)
         BTN_RIGHT_NEGATIVE.addTarget(self, action: "activateBtnRightNegative:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(BTN_RIGHT_NEGATIVE)
-
+        
         BTN_RIGHT_POSITIVE.frame = CGRectMake(225, 140, 25, 25)
         BTN_RIGHT_POSITIVE.backgroundColor = UIColor.clearColor()
         BTN_RIGHT_POSITIVE.layer.borderWidth = 1.0
